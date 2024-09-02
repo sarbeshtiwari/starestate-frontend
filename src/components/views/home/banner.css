@@ -1,0 +1,10 @@
+.carousel,
+.carousel-item {
+  height: 70vh; /* Set the height of the carousel to 40% of the viewport height */
+}
+
+.carousel-item img {
+  height: 100%; /* Make the image cover the full height of the carousel item */
+  width: 100%; /* Ensure the image covers the full width */
+  object-fit: cover; /* Maintain aspect ratio while covering the container */
+}
