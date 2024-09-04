@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Carousel } from 'react-bootstrap';
 import Typed from 'typed.js';
 import { fetchCategories, fetchCities, fetchProjects } from '../../../apis/home-page-api';
-import './banner.css'; // Import the CSS file
-
+import './banner.css';
+import { Link } from 'react-router-dom';
 const Banner = () => {
   const [categories, setCategories] = useState([]);
   const [cities, setCities] = useState([]);
@@ -24,6 +24,7 @@ const Banner = () => {
       fetchProjects(formData.property_type)
         .then(data => {
           const filteredProjects = data.filter(project => project.cityLocation === formData.cityLocation);
+          console.log(filteredProjects);
           setProjects(filteredProjects);
         })
         .catch(console.error);
@@ -40,6 +41,7 @@ const Banner = () => {
     if (name === 'property_type' && value) {
       await fetchProjects(value).then(data => setProjects(data)).catch(console.error);
     }
+
   };
   const [index, setIndex] = useState(0);
 
@@ -67,7 +69,7 @@ const Banner = () => {
   }, []);
   return (
     <div id="banner" className="carousel slide carousel-fade banner" data-pause="false" data-ride="carousel">
-       <Carousel fade indicators={false} controls={false} activeIndex={index}>
+       <Carousel indicators={false} controls={false} activeIndex={index}>
         <Carousel.Item>
           <picture>
             <source media="(max-width: 540px)" srcSet="images/homebanner/new/banner-apartments-m.jpg" />
@@ -106,7 +108,7 @@ const Banner = () => {
               </span>
               <div className="filter-form">
                 <form method="POST" id="categoryfilter" encType="multipart/form-data">
-                  <div className="form-row gap-form-row">
+                  <div className="row g-2">
                     <div className="col-md-10">
                       <div className="inner">
                         <div className="row no-gutters">
@@ -114,7 +116,7 @@ const Banner = () => {
                             <select
                               name="property_type"
                               id="property_type"
-                              className="form-control bg-white my-0"
+                              className="form-select bg-white my-0"
                               value={formData.property_type}
                               onChange={handleChange}
                             >
@@ -122,7 +124,7 @@ const Banner = () => {
                               {categories
                                 .filter(category => category.status)
                                 .map(filteredCategory => (
-                                  <option key={filteredCategory._id} value={filteredCategory.category}>
+                                  <option key={filteredCategory._id} value={filteredCategory.slugURL}>
                                     {filteredCategory.category}
                                   </option>
                                 ))}
@@ -132,13 +134,13 @@ const Banner = () => {
                             <select
                               name="cityLocation"
                               id="cityLocation"
-                              className="form-control bg-white my-0"
+                              className="form-select bg-white my-0"
                               value={formData.cityLocation}
                               onChange={handleChange}
                             >
                               <option value="">Project Location</option>
                               {cities.map(city => (
-                                <option key={city._id} value={city.location}>
+                                <option key={city._id} value={city.slugURL}>
                                   {city.location}
                                 </option>
                               ))}
@@ -148,24 +150,24 @@ const Banner = () => {
                             <select
                               name="projectPrice"
                               id="projectPrice"
-                              className="form-control bg-white my-0"
+                              className="form-select bg-white my-0"
                               value={formData.projectPrice}
                               onChange={handleChange}
                             >
                               <option value="">Budget</option>
-                              <option value="Below 1 Cr.">Below 1 Cr.</option>
-                              <option value="10000000">Above 1 Cr.</option>
-                              <option value="20000000">Above 2 Cr.</option>
-                              <option value="30000000">Above 3 Cr.</option>
-                              <option value="40000000">Above 4 Cr.</option>
-                              <option value="50000000">Above 5 Cr.</option>
+                              <option value="1 Cr">Below 1 Cr.</option>
+                              <option value="1 Cr">Above 1 Cr.</option>
+                              <option value="2 Cr">Above 2 Cr.</option>
+                              <option value="3 Cr">Above 3 Cr.</option>
+                              <option value="4 Cr">Above 4 Cr.</option>
+                              <option value="5 Cr">Above 5 Cr.</option>
                             </select>
                           </div>
-                          <div className="col mb-0 form-group">
+                          {/* <div className="col mb-0 form-group">
                             <select
                               name="projectConfiguration"
                               id="projectConfiguration"
-                              className="form-control bg-white my-0"
+                              className="form-select bg-white my-0"
                               value={formData.projectConfiguration}
                               onChange={handleChange}
                             >
@@ -178,12 +180,12 @@ const Banner = () => {
                               <option value="Independent Homes">Independent Homes</option>
                               <option value="Penthouse">Penthouse</option>
                             </select>
-                          </div>
-                          <div className="col mb-0 form-group">
+                          </div> */}
+                          {/* <div className="col mb-0 form-group">
                             <select
                               name="projectName"
                               id="projectName"
-                              className="form-control bg-white my-0"
+                              className="form-select bg-white my-0"
                               value={formData.projectName}
                               onChange={handleChange}
                             >
@@ -194,7 +196,7 @@ const Banner = () => {
                                 </option>
                               ))}
                             </select>
-                          </div>
+                          </div> */}
                         </div>
                       </div>
                     </div>
@@ -209,18 +211,16 @@ const Banner = () => {
                 <div className="filter-property-type d-none d-md-flex">
                   <a href="#">New Launches</a>
                   <a href="#">Luxury Properties</a>
-                  <a href="#">Commercial Properties</a>
+                  <Link to='/commercial-projects'>Commercial Properties</Link>
                   <a href="#">Residential Properties</a>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="scrollDown d-none d-md-block">
-          Scroll<br />
-          <i className="fa fa-chevron-down"></i>
-        </div>
+
       </div>
+      <div class="scrollDown d-none d-md-block">Scroll<br /><i class="fa fa-chevron-down"></i></div>
     </div>
   );
 };

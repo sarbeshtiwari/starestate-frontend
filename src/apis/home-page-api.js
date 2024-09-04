@@ -2,11 +2,9 @@ import axios from 'axios';
 
 const API_BASE_URL = `https://ecis.in/apis/star-estate-API`;
 
-// Fetch categories
 export const fetchCategories = async () => {
     try {
-        const response = await axios.get(`${API_BASE_URL}/categories/getCategories`);   //can change later
-
+        const response = await axios.get(`${API_BASE_URL}/categories/getCategories`);
         return response.data;
     } catch (error) {
         console.error('Error fetching categories:', error);
@@ -26,10 +24,8 @@ export const fetchCities = async () => {
 
 export const fetchProjects = async (id) => {
     try {
-        
         const response = await axios.get(`${API_BASE_URL}/addProjects/getProjectByType/${id}`);
         return response.data;
-       
     } catch (err) {
         console.error('Unexpected error:', err);
         throw err;

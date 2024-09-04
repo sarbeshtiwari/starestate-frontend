@@ -1,6 +1,10 @@
 
 /*responsive*/
-
+@media (min-width: 1200px) {
+  .container, .container-lg, .container-md, .container-sm, .container-xl {
+      max-width: 1140px !important;
+  }
+}
 @media (min-width: 1320px) {
   .container-lg{max-width: 1260px;}
 }
@@ -184,4 +188,3 @@
   .hero-textbox .inner .heading .h3 {font-size: 2rem;}
   /* project page */
 }
-  

@@ -77,7 +77,7 @@ const Footer = () => {
                     <div className="row">
                         <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <div className="foot-head">
-                                <h6>About Us</h6>
+                                <h6 className='text-white'>About Us</h6>
                             </div>
                             <ul className="list-unstyled">
                                 <li><a href="https://www.starestate.in/about-us">Company Overview</a></li>
@@ -89,7 +89,7 @@ const Footer = () => {
                         </div>
                         <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <div className="foot-head">
-                                <h6>Quick Links</h6>
+                                <h6 className='text-white'>Quick Links</h6>
                             </div>
                             <ul className="list-unstyled">
                                 <li><a href="https://www.starestate.in/terms-of-use">Terms of Use</a></li>
@@ -101,7 +101,7 @@ const Footer = () => {
                         </div>
                         <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                             <div className="foot-head">
-                                <h6>Follow Us</h6>
+                                <h6 className='text-white'>Follow Us</h6>
                             </div>
                             <ul className="list-unstyled">
                                 <li><a href="https://www.facebook.com/starestate" target="_blank" rel="noopener noreferrer">Facebook</a></li>
@@ -114,7 +114,7 @@ const Footer = () => {
                     </div>
                 </div>
                 <div className="padding footer-copy-right text-center">
-                    <p>© 2024 Starestate. All rights reserved.</p>
+                    <p className='text-white'>© 2024 Starestate. All rights reserved.</p>
                 </div>
             </div>
         </footer>

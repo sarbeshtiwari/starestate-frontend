@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const InsightsTools = () => {
     return (
@@ -12,30 +13,30 @@ const InsightsTools = () => {
                     <div className="col-lg-3 col-sm-6 project-card">
                         <div className="inner px-0 pt-0">
 
-                            <img src="assets/images/icons/img-emi.jpg" alt="" />
-                            <div className="card-footer viewmore"><a href="emi-calculator.php">Explore Now</a></div>
+                            <img src="assets/images/icons/img-emi.webp" alt="" />
+                            <div className="card-footer viewmore"><Link to='/emi-calculator'>Explore Now</Link></div>
                         </div>
                     </div>
                     <div className="col-lg-3 col-sm-6 project-card">
                         <div className="inner px-0 pt-0">
 
-                            <img src="assets/images/icons/img-evaluation-report.jpg" alt="" />
-                            <div className="card-footer viewmore"><a href="property-evaluation-report.php">Explore Now</a></div>
+                            <img src="assets/images/icons/img-evaluation-report.webp" alt="" />
+                            <div className="card-footer viewmore"><Link to='/property-evaluation-report'>Explore Now</Link></div>
                         </div>
                     </div>
                     <div className="col-lg-3 col-sm-6 project-card">
                         <div className="inner px-0 pt-0">
 
-                            <img src="assets/images/icons/img-nri.jpg" alt="" />
-                            <div className="card-footer viewmore"><a href="#">Explore Now</a></div>
+                            <img src="assets/images/icons/img-nri.webp" alt="" />
+                            <div className="card-footer viewmore"><Link to='/nri-guidelines'>Explore Now</Link></div>
                         </div>
                     </div>
 
                     <div className="col-lg-3 col-sm-6 project-card">
                         <div className="inner px-0 pt-0">
 
-                            <img src="assets/images/icons/img-realty-check.jpg" alt="" />
-                            <div className="card-footer viewmore"><a href="realty-check-before-buying-property.php">Explore Now</a></div>
+                            <img src="assets/images/icons/img-realty-check.webp" alt="" />
+                            <div className="card-footer viewmore"><Link to='/reality-check-before-buying'>Explore Now</Link></div>
                         </div>
                     </div>
                 </div>

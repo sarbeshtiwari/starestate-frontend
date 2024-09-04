@@ -8,7 +8,7 @@ const newsItems = [
 ];
 
 const NewsViews = () => (
-  <div className="container-lg">
+  <div className="padding container-lg">
     <div className="heading mx-auto text-center">
       <h3>News &amp; Views</h3>
     </div>
