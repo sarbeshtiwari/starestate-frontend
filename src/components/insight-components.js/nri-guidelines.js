@@ -1,14 +1,17 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import Header from '../widgets/header'
+import Footer from '../widgets/footer'
 
 function NriGuidelines() {
     return (
         <div>
+            <Header />
             <div className="insideBanner">
 
                     <picture>
 
-                        <img src="https://ecis.in/star-estate-react/assets/images/banner-nri.jpg" className="h-100 object-cover object-position-bottom rounded" alt="Star Estate" />
+                        <img src="/star-estate-react/assets/images/banner-nri.jpg" className="h-100 object-cover object-position-bottom rounded" alt="Star Estate" />
                     </picture>
 
             </div>
@@ -33,37 +36,37 @@ function NriGuidelines() {
                     <div className="row gap-row">
                         <div className="col-md-4 iconBox nri-iconBox">
                             <div className="d-flex flex-column align-items-center bg-lightgray">
-                                <div className="img-fluid size-md"><img src="https://ecis.in/star-estate-react/assets/images/icons/financial-idea.svg" alt="Financial Solution" /></div>
+                                <div className="img-fluid size-md"><img src="/star-estate-react/assets/images/icons/financial-idea.svg" alt="Financial Solution" /></div>
                                 <p className="mb-0 text-primary">Easy Financial Solutions</p>
                             </div>
                         </div>
                         <div className="col-md-4 iconBox nri-iconBox">
                             <div className="d-flex flex-column align-items-center bg-lightgray">
-                                <div className="img-fluid size-md"><img src="https://ecis.in/star-estate-react/assets/images/icons/lease.svg" alt="Easy Lease" /></div>
+                                <div className="img-fluid size-md"><img src="/star-estate-react/assets/images/icons/lease.svg" alt="Easy Lease" /></div>
                                 <p className="mb-0 text-primary">Easy Lease</p>
                             </div>
                         </div>
                         <div className="col-md-4 iconBox nri-iconBox">
                             <div className="d-flex flex-column align-items-center bg-lightgray">
-                                <div className="img-fluid size-md"><img src="https://ecis.in/star-estate-react/assets/images/icons/handshake.svg" alt="NRI Assistance" /></div>
+                                <div className="img-fluid size-md"><img src="/star-estate-react/assets/images/icons/handshake.svg" alt="NRI Assistance" /></div>
                                 <p className="mb-0 text-primary">Dedicated NRI Assistance (onsite)</p>
                             </div>
                         </div>
                         <div className="col-md-4 iconBox nri-iconBox">
                             <div className="d-flex flex-column align-items-center bg-lightgray">
-                                <div className="img-fluid size-md"><img src="https://ecis.in/star-estate-react/assets/images/icons/customer-support-stroke.svg" alt="Customer Care Assistance" /></div>
+                                <div className="img-fluid size-md"><img src="/star-estate-react/assets/images/icons/customer-support-stroke.svg" alt="Customer Care Assistance" /></div>
                                 <p className="mb-0 text-primary">Customer Care Assistance</p>
                             </div>
                         </div>
                         <div className="col-md-4 iconBox nri-iconBox">
                             <div className="d-flex flex-column align-items-center bg-lightgray">
-                                <div className="img-fluid size-md"><img src="https://ecis.in/star-estate-react/assets/images/icons/special-offer.svg" alt="Exclusive Offers" /></div>
+                                <div className="img-fluid size-md"><img src="/star-estate-react/assets/images/icons/special-offer.svg" alt="Exclusive Offers" /></div>
                                 <p className="mb-0 text-primary">Exclusive Offers</p>
                             </div>
                         </div>
                         <div className="col-md-4 iconBox nri-iconBox">
                             <div className="d-flex flex-column align-items-center bg-lightgray">
-                                <div className="img-fluid size-md"><img src="https://ecis.in/star-estate-react/assets/images/icons/gifts-stroke.svg" alt="Special Gifts" /></div>
+                                <div className="img-fluid size-md"><img src="/star-estate-react/assets/images/icons/gifts-stroke.svg" alt="Special Gifts" /></div>
                                 <p className="mb-0 text-primary">Special Gifts</p>
                             </div>
                         </div>
@@ -324,6 +327,7 @@ function NriGuidelines() {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
     )
 }

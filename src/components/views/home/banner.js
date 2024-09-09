@@ -4,7 +4,26 @@ import Typed from 'typed.js';
 import { fetchCategories, fetchCities, fetchProjects } from '../../../apis/home-page-api';
 import './banner.css';
 import { Link } from 'react-router-dom';
+import Header from '../../widgets/header';
 const Banner = () => {
+  useEffect(() => {
+    const scrollDown = document.querySelector('.scrollDown');
+    const scrollToElement = document.querySelector('.scrollto');
+
+    const handleScroll = () => {
+      window.scrollTo({
+        top: scrollToElement.offsetTop,
+        behavior: 'smooth',
+      });
+    };
+
+    scrollDown.addEventListener('click', handleScroll);
+
+    return () => {
+      // Cleanup event listener when component unmounts
+      scrollDown.removeEventListener('click', handleScroll);
+    };
+  }, []);
   const [categories, setCategories] = useState([]);
   const [cities, setCities] = useState([]);
   const [projects, setProjects] = useState([]);
@@ -68,33 +87,36 @@ const Banner = () => {
     };
   }, []);
   return (
-    <div id="banner" className="carousel slide carousel-fade banner" data-pause="false" data-ride="carousel">
+    <div>
+      <Header />
+
+    <div id="banner" className="carousel slide carousel-fade banner" data-bs-pause="false" data-bs-ride="carousel">
        <Carousel indicators={false} controls={false} activeIndex={index}>
         <Carousel.Item>
           <picture>
             <source media="(max-width: 540px)" srcSet="images/homebanner/new/banner-apartments-m.jpg" />
-            <img src="assets/images/homebanner/new/banner-apartments.jpg" alt="Star Estate" className="d-block w-100 carousel-img" />
+            <img src="/star-estate-react/assets/images/homebanner/new/banner-apartments.jpg" alt="Star Estate" className="d-block w-100 carousel-img" />
           </picture>
           <span className="typing-text-in-carousel">Apartment</span>
         </Carousel.Item>
         <Carousel.Item>
           <picture>
             <source media="(max-width: 540px)" srcSet="images/homebanner/new/banner-villa-m.jpg" />
-            <img src="assets/images/homebanner/new/banner-villa.jpg" alt="Star Estate" className="d-block w-100 carousel-img" />
+            <img src="/star-estate-react/assets/images/homebanner/new/banner-villa.jpg" alt="Star Estate" className="d-block w-100 carousel-img" />
           </picture>
           <span className="typing-text-in-carousel">Villa</span>
         </Carousel.Item>
         <Carousel.Item>
           <picture>
             <source media="(max-width: 540px)" srcSet="images/homebanner/new/banner-mall-m.jpg" />
-            <img src="assets/images/homebanner/new/banner-mall.jpg" alt="Star Estate" className="d-block w-100 carousel-img" />
+            <img src="/star-estate-react/assets/images/homebanner/new/banner-mall.jpg" alt="Star Estate" className="d-block w-100 carousel-img" />
           </picture>
           <span className="typing-text-in-carousel">Mall</span>
         </Carousel.Item>
         <Carousel.Item>
           <picture>
             <source media="(max-width: 540px)" srcSet="images/homebanner/new/banner-office-m.jpg" />
-            <img src="assets/images/homebanner/new/banner-office.jpg" alt="Star Estate" className="d-block w-100 carousel-img" />
+            <img src="/star-estate-react/assets/images/homebanner/new/banner-office.jpg" alt="Star Estate" className="d-block w-100 carousel-img" />
           </picture>
           <span className="typing-text-in-carousel">Office Space</span>
         </Carousel.Item>
@@ -108,15 +130,15 @@ const Banner = () => {
               </span>
               <div className="filter-form">
                 <form method="POST" id="categoryfilter" encType="multipart/form-data">
-                  <div className="row g-2">
+                  <div className="row gx-2">
                     <div className="col-md-10">
                       <div className="inner">
-                        <div className="row no-gutters">
+                        <div className="row g-0">
                           <div className="col mb-0 form-group">
                             <select
                               name="property_type"
                               id="property_type"
-                              className="form-select bg-white my-0"
+                              className="form-control bg-white my-0"
                               value={formData.property_type}
                               onChange={handleChange}
                             >
@@ -134,7 +156,7 @@ const Banner = () => {
                             <select
                               name="cityLocation"
                               id="cityLocation"
-                              className="form-select bg-white my-0"
+                              className="form-control bg-white my-0"
                               value={formData.cityLocation}
                               onChange={handleChange}
                             >
@@ -150,7 +172,7 @@ const Banner = () => {
                             <select
                               name="projectPrice"
                               id="projectPrice"
-                              className="form-select bg-white my-0"
+                              className="form-control bg-white my-0"
                               value={formData.projectPrice}
                               onChange={handleChange}
                             >
@@ -211,8 +233,8 @@ const Banner = () => {
                 <div className="filter-property-type d-none d-md-flex">
                   <a href="#">New Launches</a>
                   <a href="#">Luxury Properties</a>
-                  <Link to='/commercial-projects'>Commercial Properties</Link>
-                  <a href="#">Residential Properties</a>
+                  <Link to='/projects/commercial'>Commercial Properties</Link>
+                  <Link to='/projects/residential'>Residential Properties</Link>
                 </div>
               </div>
             </div>
@@ -220,7 +242,9 @@ const Banner = () => {
         </div>
 
       </div>
-      <div class="scrollDown d-none d-md-block">Scroll<br /><i class="fa fa-chevron-down"></i></div>
+      <div className="scrollDown d-none d-md-block">Scroll<br /><i className="fa fa-chevron-down"></i></div>
+    </div>
+
     </div>
   );
 };

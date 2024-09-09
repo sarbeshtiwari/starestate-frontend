@@ -1,5 +1,9 @@
 import React, { useEffect, useState } from 'react'
+
 import axiosInstance from '../utils/axiosInstance';
+import { Link } from 'react-router-dom';
+import Header from '../../widgets/header';
+import Footer from '../../widgets/footer';
 
 function Career() {
     const [jobs, setJobs] = useState([]);
@@ -19,6 +23,7 @@ function Career() {
     }, []);
   return (
     <div>
+        <Header />
         <div className="insideBanner">
         <picture>
 
@@ -29,7 +34,7 @@ function Career() {
         <div className="container">
             <div className="breadcrumbContainer" aria-label="breadcrumb">
                 <ol className="breadcrumb">
-                    <li className="breadcrumb-item"><a href="index.php">Home</a></li>
+                    <li className="breadcrumb-item"><Link to='/'>Home</Link></li>
                     <li className="breadcrumb-item active">Careers</li>
                 </ol>
             </div>
@@ -111,7 +116,7 @@ function Career() {
                                     <td>{job.qualification}</td>
                                     <td>{job.min_exp}</td>
                                     <td className="readmore mt-0">
-                                        <a href={job.link} name="Submit" className="button">View</a>
+                                        <Link to={`/careers/${job.location}/${job.slugURL}`} name="Submit" className="button">View</Link>
                                     </td>
                                 </tr>
                             ))
@@ -126,6 +131,7 @@ function Career() {
             </div>
         </div>
     </div>
+    <Footer />
     </div>
   )
 }

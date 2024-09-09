@@ -1,13 +1,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import Header from '../widgets/header';
+import Footer from '../widgets/footer';
 
 function PropertyEvaluationReport() {
     return (
         <div>
+            <Header />
             <div className="insideBanner">
 
                     <picture>
-                        <img src="https://ecis.in/star-estate-react/assets/images/banner-property-evaluation.jpg" className="img-fluid h-100 object-cover object-position-bottom rounded" alt="Star Estate" />
+                        <img src="/star-estate-react/assets/images/banner-property-evaluation.jpg" className="img-fluid h-100 object-cover object-position-bottom rounded" alt="Star Estate" />
                     </picture>
 
             </div>
@@ -190,6 +193,7 @@ function PropertyEvaluationReport() {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
     )
 }

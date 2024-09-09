@@ -1,15 +1,16 @@
 import React from 'react';
 
+
 // Sample data, replace with actual data if available
 const cities = [
-  { src: 'assets/images/cities/new/hyderabad.jpg', alt: 'Hyderabad' },
-  { src: 'assets/images/cities/new/noida.jpg', alt: 'Noida' },
-  { src: 'assets/images/cities/new/mumbai.jpg', alt: 'Mumbai' },
-  { src: 'assets/images/cities/new/pune.jpg', alt: 'Pune' },
-  { src: 'assets/images/cities/new/bangalore.jpg', alt: 'Bangalore' },
-  { src: 'assets/images/cities/new/delhi.jpg', alt: 'Delhi' },
-  { src: 'assets/images/cities/new/gurugram.jpg', alt: 'Gurugram' },
-  { src: 'assets/images/cities/new/other-cities.jpg', alt: 'Other Cities' }
+  { src: '/star-estate-react/assets/images/cities/new/hyderabad.jpg', alt: 'Hyderabad' },
+  { src: '/star-estate-react/assets/images/cities/new/noida.jpg', alt: 'Noida' },
+  { src: '/star-estate-react/assets/images/cities/new/mumbai.jpg', alt: 'Mumbai' },
+  { src: '/star-estate-react/assets/images/cities/new/pune.jpg', alt: 'Pune' },
+  { src: '/star-estate-react/assets/images/cities/new/bangalore.jpg', alt: 'Bangalore' },
+  { src: '/star-estate-react/assets/images/cities/new/delhi.jpg', alt: 'Delhi' },
+  { src: '/star-estate-react/assets/images/cities/new/gurugram.jpg', alt: 'Gurugram' },
+  { src: '/star-estate-react/assets/images/cities/new/other-cities.jpg', alt: 'Other Cities' }
 ];
 
 const CitywiseContainer = () => (

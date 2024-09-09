@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
+import Header from '../widgets/header';
+import Footer from '../widgets/footer';
 
 function EmiCalculator() {
     const [loanAmount, setLoanAmount] = useState(5000000);
@@ -32,7 +34,7 @@ function EmiCalculator() {
         }
     };
 
- 
+
     useEffect(() => {
         updateData();
     }, [loanAmount, interestRate, loanTenure]);
@@ -54,10 +56,11 @@ function EmiCalculator() {
     };
   return (
     <div>
+       <Header />
     <div className="insideBanner">
 
             <picture>
-                <img src="https://ecis.in/star-estate-react/assets/images/banner-emi-calculator1.jpg" className="h-100 object-cover object-position-bottom rounded" alt="Star Estate" />
+                <img src="/star-estate-react/assets/images/banner-emi-calculator1.jpg" className="h-100 object-cover object-position-bottom rounded" alt="Star Estate" />
             </picture>
 
     </div>
@@ -141,6 +144,7 @@ function EmiCalculator() {
             </div>
         </div>
     </div>
+    <Footer />
 </div>
   )
 }

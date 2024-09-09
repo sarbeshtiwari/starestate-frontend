@@ -4,9 +4,9 @@
 @media (min-width: 1320px) {
     .container-lg{max-width: 1260px;}
   }
-  
+
   @media (min-width: 1400px) {
-    .container-lg{max-width: 1340px;}
+    .container-lg{max-width: 1340px ; }
     #banner{height: 70vh;}
     .bannerStatsWrapper .statBox .inner{min-height: 112px; padding: 1.25rem;}
     .hm-section-heading .inner {padding: 4rem !important;}
@@ -27,7 +27,7 @@
     .projectPageWrapper {margin-top: 75px;}
   
     /* Project page */
-    .projectBanner{height: auto;}
+    .projectBanner{height: auto ;}
     .reraBox{justify-content: center;}
     .hero-textbox{position: static; transform: none; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid rgb(0 0 0 / 15%);}
     .hero-textbox .inner{max-width: 100%; text-align: center; color: initial; padding: 0; background-color: transparent; backdrop-filter: none; box-shadow: none;}
@@ -184,4 +184,3 @@
     .hero-textbox .inner .heading .h3 {font-size: 2rem;}
     /* project page */
   }
-    

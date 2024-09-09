@@ -1,9 +1,12 @@
-import axios from 'axios';
+
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom';
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
+import './App.css';
 import axiosInstance from '../utils/axiosInstance';
+import Footer from '../../widgets/footer';
+import Header from '../../widgets/header';
 
 function AboutUs() {
     useEffect(() => {
@@ -48,9 +51,10 @@ function AboutUs() {
     }, []);
     return (
         <div>
+            <Header />
             <div class="insideBanner">
                 <picture>
-                    <img src="../assets/images/banner-emi-calculator1.jpg" class="h-100 object-cover object-position-bottom rounded" alt="Star Estate" />
+                    <img src="/star-estate-react/assets/images/banner-emi-calculator1.jpg" class="h-100 object-cover object-position-bottom rounded" alt="Star Estate" />
                 </picture>
             </div>
             <div class="w-100">
@@ -107,13 +111,13 @@ function AboutUs() {
                                         </div>
                                     </div>
                                 </div>
-                                <img src="../assets/images/card-bg.jpg" class="h-100 object-cover stats-bg" alt="" />
+                                <img src="/star-estate-react/assets/images/card-bg.jpg" class="h-100 object-cover stats-bg" alt="" />
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="w-100 padding bg-image overflow-hidden" style={{ backgroundImage: "url(../assets/images/card-bg.jpg)" }}>
+            <div class="w-100 padding bg-image overflow-hidden" style={{ backgroundImage: "url(/star-estate-react/assets/images/card-bg.jpg)" }}>
                 <div class="container">
                     <div class="overview-box text-justify">
                         <div class="inner">
@@ -150,7 +154,7 @@ function AboutUs() {
                     <div class="director-msg bg-gray-gradient-box p-3">
                         <i class="fa fa-quote-left"></i>
                         <i class="fa fa-quote-right"></i>
-                        <div class="img-fluid"><img src="https://www.starestate.in/assets/images/Mr-Vijay-Jain-MD-Star-Estate.jpg" alt="Direct Vijay Jain" /></div>
+                        <div class="img-fluid"><img src="https://ecis.in/star-estate-react/assets/images/Mr-Vijay-Jain-MD-Star-Estate.jpg" alt="Direct Vijay Jain" /></div>
                         <div class="director-content">
                             <div class="director-quote">We make sure to serve every client with transparency, reliability, and a proven commitment.</div>
                             <div class="director-title">
@@ -185,7 +189,7 @@ function AboutUs() {
                     <div class="row gap-row">
                         <div class="col-lg-6 whyUsBox">
                             <div class="inner bg-gray-gradient-box h-100">
-                                <div class="imgBox"><img src="../assets/images/icons/sincerity.svg" alt="" /></div>
+                                <div class="imgBox"><img src="/star-estate-react/assets/images/icons/sincerity.svg" alt="" /></div>
                                 <div class="whyUsText">
                                     <h5 class="font-weight-bold">Sincerity</h5>
                                     <p class="mb-0">We stay true to our words. Star Estate never steps back from the commitment. Our professional work approach and the precision to evaluate and meet client expectations draw our proven commitment since inception.</p>
@@ -194,7 +198,7 @@ function AboutUs() {
                         </div>
                         <div class="col-lg-6 whyUsBox">
                             <div class="inner bg-gray-gradient-box h-100">
-                                <div class="imgBox"><img src="../assets/images/icons/transparency.svg" alt="" /></div>
+                                <div class="imgBox"><img src="/star-estate-react/assets/images/icons/transparency.svg" alt="" /></div>
                                 <div class="whyUsText">
                                     <h5 class="font-weight-bold">Transparency</h5>
                                     <p class="mb-0">Listening is the key to success, and our team patiently listens to the client's requirements and expectations. With it, we begin the procedure of listing, searching, and shortlisting properties for clients. The process includes picking up budget-friendly inventory and describing the project embellished with features that make the dream living experience a fairy-tale.</p>
@@ -203,7 +207,7 @@ function AboutUs() {
                         </div>
                         <div class="col-lg-6 whyUsBox">
                             <div class="inner bg-gray-gradient-box h-100">
-                                <div class="imgBox"><img src="../assets/images/icons/assurance.svg" alt="" /></div>
+                                <div class="imgBox"><img src="/star-estate-react/assets/images/icons/assurance.svg" alt="" /></div>
                                 <div class="whyUsText">
                                     <h5 class="font-weight-bold">Assurance</h5>
                                     <p class="mb-0">Star Estate assures investors about closing the right deal. The company addresses property investment purposes in the wake to meet client satisfaction. The organisation exhibits relevant properties for investors with assurance of post-sale.</p>
@@ -212,7 +216,7 @@ function AboutUs() {
                         </div>
                         <div class="col-lg-6 whyUsBox">
                             <div class="inner bg-gray-gradient-box h-100">
-                                <div class="imgBox"><img src="../assets/images/icons/reliability.svg" alt="" /></div>
+                                <div class="imgBox"><img src="/star-estate-react/assets/images/icons/reliability.svg" alt="" /></div>
                                 <div class="whyUsText">
                                     <h5 class="font-weight-bold">Reliability</h5>
                                     <p class="mb-0">With the transparent work approach, we have won the trust of clients' across segments. Thus, clienteles refer us to friends and family as they know Star Estate is a reliable name in the Indian real estate market.</p>
@@ -222,6 +226,7 @@ function AboutUs() {
                     </div>
                 </div>
             </div>
+            <Footer />
         </div>
     )
 }

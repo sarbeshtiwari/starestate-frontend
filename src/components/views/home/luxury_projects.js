@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import Swiper from 'swiper/bundle';
 import 'swiper/css/bundle';
 
@@ -29,6 +30,9 @@ const ProjectsCarousel = () => {
     });
   }, []);
   return (
+    <div>
+
+
     <div className="w-100 position-relative overflow-hidden padding bg-lightgray hm-overviewContainer animate-section1">
     <div className="container-lg">
         <div className="heading mx-auto text-center">
@@ -40,12 +44,12 @@ const ProjectsCarousel = () => {
                     <a href="#" className="project_box_inner">
                         <div className="Project_box_img">
                             <div className="reraBox position-absolute">
-                                <div className="qr_img"><img src="https://ecis.in/star-estate-react/assets/images/lodha-bellevue/Lodha_Bellevue_qr.png" alt="" /></div>
+                                <div className="qr_img"><img src="/star-estate-react/assets/images/lodha-bellevue/Lodha_Bellevue_qr.png" alt="" /></div>
                                 <div className="rera_num">
                                     <small className="mb-0"><strong className="text-primary">Projects RERA No: </strong> UPRERAPRJ446459<br /><small className="small text-primary"><i className="fa fa-link"></i> www.up-rera.in/projects</small></small>
                                 </div>
                             </div>
-                            <div className="img-fluid"><img src="https://ecis.in/star-estate-react/assets/images/projects/max.jpg" alt="Max Estate 128" /></div>
+                            <div className="img-fluid"><img src="/star-estate-react/assets/images/projects/max.jpg" alt="Max Estate 128" /></div>
                         </div>
                         <div className="project_box_details">
                             <div className="project_developer_detail">
@@ -64,12 +68,12 @@ const ProjectsCarousel = () => {
                     <a href="#" className="project_box_inner">
                         <div className="Project_box_img">
                             <div className="reraBox position-absolute">
-                                <div className="qr_img"><img src="https://ecis.in/star-estate-react/assets/images/lodha-bellevue/Lodha_Bellevue_qr.png" alt="" /></div>
+                                <div className="qr_img"><img src="/star-estate-react/assets/images/lodha-bellevue/Lodha_Bellevue_qr.png" alt="" /></div>
                                 <div className="rera_num">
                                     <small className="mb-0"><strong className="text-primary">Projects RERA No: </strong> UPRERAPRJ442214<br /><small className="small text-primary"><i className="fa fa-link"></i> www.up-rera.in/projects</small></small>
                                 </div>
                             </div>
-                            <div className="img-fluid"><img src="https://ecis.in/star-estate-react/assets/images/projects/cullinan.jpg" alt="M3M The Cullinan" /></div>
+                            <div className="img-fluid"><img src="/star-estate-react/assets/images/projects/cullinan.jpg" alt="M3M The Cullinan" /></div>
                         </div>
                         <div className="project_box_details">
                             <div className="project_developer_detail">
@@ -88,12 +92,12 @@ const ProjectsCarousel = () => {
                     <a href="#" className="project_box_inner">
                         <div className="Project_box_img">
                             <div className="reraBox position-absolute">
-                                <div className="qr_img"><img src="https://ecis.in/star-estate-react/assets/images/lodha-bellevue/Lodha_Bellevue_qr.png" alt="" /></div>
+                                <div className="qr_img"><img src="/star-estate-react/assets/images/lodha-bellevue/Lodha_Bellevue_qr.png" alt="" /></div>
                                 <div className="rera_num">
                                     <small className="mb-0"><strong className="text-primary">Projects RERA No: </strong> UPRERAPRJ704730<br /><small className="small text-primary"><i className="fa fa-link"></i> www.up-rera.in/projects</small></small>
                                 </div>
                             </div>
-                            <div className="img-fluid"><img src="https://ecis.in/star-estate-react/assets/images/projects/woods.jpg" alt="Godrej Woods" /></div>
+                            <div className="img-fluid"><img src="/star-estate-react/assets/images/projects/woods.jpg" alt="Godrej Woods" /></div>
                         </div>
                         <div className="project_box_details">
                             <div className="project_developer_detail">
@@ -112,12 +116,12 @@ const ProjectsCarousel = () => {
                     <a href="#" className="project_box_inner">
                         <div className="Project_box_img">
                             <div className="reraBox position-absolute">
-                                <div className="qr_img"><img src="https://ecis.in/star-estate-react/assets/images/lodha-bellevue/Lodha_Bellevue_qr.png" alt="" /></div>
+                                <div className="qr_img"><img src="/star-estate-react/assets/images/lodha-bellevue/Lodha_Bellevue_qr.png" alt="" /></div>
                                 <div className="rera_num">
                                     <small className="mb-0"><strong className="text-primary">Projects RERA No: </strong> DLRERA2019P0003<br /><small className="small text-primary"><i className="fa fa-link"></i> www.rera.delhi.gov.in</small></small>
                                 </div>
                             </div>
-                            <div className="img-fluid"><img src="https://ecis.in/star-estate-react/assets/images/projects/prima.jpg" alt="Godrej Prima" /></div>
+                            <div className="img-fluid"><img src="/star-estate-react/assets/images/projects/prima.jpg" alt="Godrej Prima" /></div>
                         </div>
                         <div className="project_box_details">
                             <div className="project_developer_detail">
@@ -136,12 +140,12 @@ const ProjectsCarousel = () => {
                     <a href="#" className="project_box_inner">
                         <div className="Project_box_img">
                             <div className="reraBox position-absolute">
-                                <div className="qr_img"><img src="https://ecis.in/star-estate-react/assets/images/lodha-bellevue/Lodha_Bellevue_qr.png" alt="" /></div>
+                                <div className="qr_img"><img src="/star-estate-react/assets/images/lodha-bellevue/Lodha_Bellevue_qr.png" alt="" /></div>
                                 <div className="rera_num">
                                     <small className="mb-0"><strong className="text-primary">Projects RERA No: </strong> UPRERAPRJ734569<br /><small className="small text-primary"><i className="fa fa-link"></i> www.up-rera.in/projects</small></small>
                                 </div>
                             </div>
-                            <div className="img-fluid"><img src="https://ecis.in/star-estate-react/assets/images/projects/island.jpg" alt="The Islands By Gaurs" /></div>
+                            <div className="img-fluid"><img src="/star-estate-react/assets/images/projects/island.jpg" alt="The Islands By Gaurs" /></div>
                         </div>
                         <div className="project_box_details">
                             <div className="project_developer_detail">
@@ -160,11 +164,12 @@ const ProjectsCarousel = () => {
             </div>
             <div className="swiper-controls h-auto mr-auto">
                     <div className="swiper-button-prev" tabIndex="0" role="button" aria-label="Previous slide" aria-controls="swiper-wrapper-865a9d491d9ef921"></div>
-                    <div className="readmore w-auto mt-0"><a href="#" className="button reverse">View All</a></div>
+                    <div className="readmore w-auto mt-0"><Link to='/projects' className="button reverse">View All</Link></div>
                     <div className="swiper-button-next" tabIndex="0" role="button" aria-label="Next slide" aria-controls="swiper-wrapper-865a9d491d9ef921"></div>
                 </div>
         <span className="swiper-notification" aria-live="assertive" aria-atomic="true"></span></div>
     </div>
+</div>
 </div>
   );
 };

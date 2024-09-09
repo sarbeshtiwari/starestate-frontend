@@ -1,6 +1,18 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
+import axiosInstance from '../views/utils/axiosInstance';
+import logo from '../../assets/images/logo-starestate.png';
 
+
+export const fetchCities = async () => {
+    try {
+        const response = await axiosInstance.get(`/city/getCities`);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching cities:', error);
+        throw error;
+    }
+};
 
 const Header = () => {
     const [menuOpen, setMenuOpen] = useState(false);
@@ -11,8 +23,65 @@ const Header = () => {
     const closeMenu = () => {
         setMenuOpen(false);
     };
+    const [cities, setCities] = useState([]);
 
 
+    useEffect(() => {
+        const getCities = async () => {
+            try {
+                const data = await fetchCities();
+                setCities(data);
+            } catch (error) {
+                console.error('Error fetching cities:', error);
+            }
+        };
+
+        getCities();
+    }, []);
+    useEffect(() => {
+        const hasDropChildElements = document.querySelectorAll('.hasDropChild');
+
+        const handleClick = function () {
+            const dropdowns = document.querySelectorAll('.hasDropChild .dropdown');
+            dropdowns.forEach(dropdown => {
+                dropdown.style.display = 'none';
+            });
+
+            const dropdown = this.querySelector('.dropdown');
+            if (dropdown.style.display === 'none') {
+                dropdown.style.display = 'block';
+            } else {
+                dropdown.style.display = 'none';
+            }
+        };
+
+        hasDropChildElements.forEach(element => {
+            element.addEventListener('click', handleClick);
+        });
+
+        // Cleanup event listeners on component unmount
+        return () => {
+            hasDropChildElements.forEach(element => {
+                element.removeEventListener('click', handleClick);
+            });
+        };
+    }, []);
+    const [developers, setDevelopers] = useState([]);
+    const [errors, setError] = useState([]);
+    useEffect(() => {
+        const fetchDeveloperDetails = async () => {
+            try {
+                const response = await axiosInstance.get(`/developers/getDeveloper`);
+                console.log(response.data, "builder")
+                setDevelopers(response.data);
+            } catch (error) {
+                setError('Error fetching project content');
+                console.error('Error fetching project content:', error);
+            }
+        };
+
+        fetchDeveloperDetails();
+    }, []);
     return (
         <>
             <header className="header">
@@ -21,7 +90,7 @@ const Header = () => {
                         <nav className="navi">
                             <div className="logo">
                                 <Link to='/'>
-                                    <img src="assets/images/logo-starestate.png" alt="Star Estate" />
+                                    <img src={logo} alt="Star Estate" />
                                 </Link>
                             </div>
                             <div className="menu d-none d-lg-block">
@@ -33,21 +102,11 @@ const Header = () => {
                                         <div className="dropdown dropdown-lg scroller">
                                             <div className="dropdown-title">City</div>
                                             <ul className="list-inline">
-                                                <li><Link to="#">Mumbai</Link></li>
-                                                <li><Link to="#">Pune</Link></li>
-                                                <li><Link to="#">Bangalore</Link></li>
-                                                <li><Link to="#">Delhi</Link></li>
-                                                <li><Link to="#">Noida</Link></li>
-                                                <li><Link to="#">Gurugram</Link></li>
-                                                <li><Link to="#">Greater Noida</Link></li>
-                                                <li><Link to="#">Agra</Link></li>
-                                                <li><Link to="#">Ahmedabad</Link></li>
-                                                <li><Link to="#">Mathura</Link></li>
-                                                <li><Link to="#">Ghaziabad</Link></li>
-                                                <li><Link to="#">Faridabad</Link></li>
-                                                <li><Link to="#">Chennai</Link></li>
-                                                <li><Link to="#">Mohali</Link></li>
-                                                <li><Link to="#">Haridwar</Link></li>
+                                                {cities.map((city) => (
+                                                    <li key={city.id}>
+                                                        <Link to="#">{city.location}</Link>
+                                                    </li>
+                                                ))}
                                             </ul>
                                         </div>
                                     </li>
@@ -58,64 +117,24 @@ const Header = () => {
                                         <div className="dropdown dropdown-lg scroller">
                                             <div className="dropdown-title">Builder</div>
                                             <ul className="list-inline">
-                                                <li><Link to="#">ABA Corp</Link></li>
-                                                <li><Link to="#">Ace</Link></li>
-                                                <li><Link to="#">Adani Realty</Link></li>
-                                                <li><Link to="#">Apex Group</Link></li>
-                                                <li><Link to="#">Ashiana Housing</Link></li>
-                                                <li><Link to="#">Assetz Property</Link></li>
-                                                <li><Link to="#">ATS</Link></li>
-                                                <li><Link to="#">Bhutani Group</Link></li>
-                                                <li><Link to="#">Birla Estate</Link></li>
-                                                <li><Link to="#">BPTP</Link></li>
-                                                <li><Link to="#">DLF</Link></li>
-                                                <li><Link to="#">Eldeco</Link></li>
-                                                <li><Link to="#">Emaar India</Link></li>
-                                                <li><Link to="#">Embassy Group</Link></li>
-                                                <li><Link to="#">Exotica Housing</Link></li>
-                                                <li><Link to="#">GAURS</Link></li>
-                                                <li><Link to="#">Godrej Properties</Link></li>
-                                                <li><Link to="#">Gulshan</Link></li>
-                                                <li><Link to="#">Hero Realty</Link></li>
-                                                <li><Link to="#">Hiranandani Developer</Link></li>
-                                                <li><Link to="#">Kalpa-Taru</Link></li>
-                                                <li><Link to="#">Kolte Patil Developer</Link></li>
-                                                <li><Link to="#">L & T</Link></li>
-                                                <li><Link to="#">Laureate Buildwell</Link></li>
-                                                <li><Link to="#">Lodha</Link></li>
-                                                <li><Link to="#">M3M</Link></li>
-                                                <li><Link to="#">Mahagun</Link></li>
-                                                <li><Link to="#">Max Estates</Link></li>
-                                                <li><Link to="#">NIMBUS Group</Link></li>
-                                                <li><Link to="#">Oberoi Realty</Link></li>
-                                                <li><Link to="#">Omaxe Limited</Link></li>
-                                                <li><Link to="#">Paras</Link></li>
-                                                <li><Link to="#">Piramal Realty</Link></li>
-                                                <li><Link to="#">Prateek Group</Link></li>
-                                                <li><Link to="#">Prestige Group</Link></li>
-                                                <li><Link to="#">Purvanchal</Link></li>
-                                                <li><Link to="#">Raheja Developers</Link></li>
-                                                <li><Link to="#">Raymond Realty</Link></li>
-                                                <li><Link to="#">Shriram Properties</Link></li>
-                                                <li><Link to="#">Signature Global</Link></li>
-                                                <li><Link to="#">Smartworld Developers</Link></li>
-                                                <li><Link to="#">Suncity Projects</Link></li>
-                                                <li><Link to="#">TATA Value Homes</Link></li>
-                                                <li><Link to="#">TVS Emerald</Link></li>
-                                                <li><Link to="#">VTP Realty</Link></li>
+                                                {developers.map((developer, index) => (
+                                                    <li key={index}>
+                                                        <Link to="#">{developer.developerName}</Link>
+                                                    </li>
+                                                ))}
                                             </ul>
                                         </div>
                                     </li>
                                     <li className="haschild">
-                                        <Link to="javascript:;">
+                                        <Link to='/star-estate-react/projects'>
                                             Projects <i className="fa fa-caret-down"></i>
                                         </Link>
                                         <div className="dropdown dropdown-lg">
                                             <div className="dropdown-title">Projects</div>
                                             <ul className="list-inline">
                                                 <li><Link to="#">Luxury</Link></li>
-                                                <li><Link to="#">Residential</Link></li>
-                                                <li><Link to="#">Commercial</Link></li>
+                                                <li><Link to='/projects/residential'>Residential</Link></li>
+                                                <li><Link to='/projects/commercial'>Commercial</Link></li>
                                                 <li><Link to="#">New Launches</Link></li>
                                             </ul>
                                         </div>
@@ -149,34 +168,30 @@ const Header = () => {
             >
                 <div className="bigMenuList">
                     <ul className="list-inline">
-                        <li><Link to='/' onClick={closeMenu}>Home</Link></li>
-                        <li className="hasDropChild"><Link to='/about-us' onClick={closeMenu}>About Us <i className="fa fa-caret-down"></i></Link>
-                            <div className="dropdown">
+                        <li><Link to='/star-estate-react' onClick={closeMenu}>Home</Link></li>
+                        <li className="hasDropChild"><Link to='/about-us' onClick={closeMenu}>About Us
+                            {/* <i className="fa fa-caret-down"></i> */}
+                        </Link>
+                            {/* <div className="dropdown">
                                 <ul className="list-inline">
                                     <li><Link to='#' onClick={closeMenu}>About Star Estate</Link></li>
                                     <li><Link to='#' onClick={closeMenu}>Mission &amp; Vision</Link></li>
                                     <li><Link to='#' onClick={closeMenu}>Who We Are</Link></li>
                                 </ul>
-                            </div>
+                            </div> */}
                         </li>
-                        <li className="hasDropChild d-block d-sm-none"><a href="javascript:;">City <i className="fa fa-caret-down"></i></a>
+                        <li className="hasDropChild d-block d-sm-none">
+                            <Link to="javascript:;">
+                                City <i className="fa fa-caret-down"></i>
+                            </Link>
                             <div className="dropdown">
+
                                 <ul className="list-inline">
-                                    <li><a href="#">Mumbai</a></li>
-                                    <li><a href="#">Pune</a></li>
-                                    <li><a href="#">Bangalore</a></li>
-                                    <li><a href="#">Delhi</a></li>
-                                    <li><a href="#">Noida</a></li>
-                                    <li><a href="#">Gurugram</a></li>
-                                    <li><a href="#">Greater Noida</a></li>
-                                    <li><a href="#">Agra</a></li>
-                                    <li><a href="#">Ahmedabad</a></li>
-                                    <li><a href="#">Mathura</a></li>
-                                    <li><a href="#">Ghaziabad</a></li>
-                                    <li><a href="#">Faridabad</a></li>
-                                    <li><a href="#">Chennai</a></li>
-                                    <li><a href="#">Mohali</a></li>
-                                    <li><a href="#">Haridwar</a></li>
+                                    {cities.map((city) => (
+                                        <li key={city.id}>
+                                            <Link to="#">{city.location}</Link>
+                                        </li>
+                                    ))}
                                 </ul>
                             </div>
                         </li>
@@ -231,12 +246,12 @@ const Header = () => {
                                 </ul>
                             </div>
                         </li>
-                        <li className="hasDropChild d-block d-sm-none"><a href="javascript:;">Projects <i className="fa fa-caret-down"></i></a>
+                        <li className="hasDropChild d-block d-sm-none"><Link to='/star-estae-react/projects'>Projects <i className="fa fa-caret-down"></i></Link>
                             <div className="dropdown">
                                 <ul className="list-inline">
                                     <li><Link to='#'>Luxury</Link></li>
-                                    <li><Link to='#'>Residential</Link></li>
-                                    <li><Link to='#'>Commercial</Link></li>
+                                    <li><Link to='/projects/residential'>Residential</Link></li>
+                                    <li> <Link to='/projects/commercial'>Commercial</Link></li>
                                     <li><Link to='#'>New Launches</Link></li>
                                 </ul>
                             </div>
@@ -253,7 +268,7 @@ const Header = () => {
                             </div>
                         </li>
                         <li><Link to='#' onClick={closeMenu}>Client's Speak</Link></li>
-                        <li><Link to='/career' onClick={closeMenu}>Careers</Link></li>
+                        <li><Link to='/careers' onClick={closeMenu}>Careers</Link></li>
                         <li><Link to='/contact-us' onClick={closeMenu}>Contact us</Link></li>
                     </ul>
                 </div>

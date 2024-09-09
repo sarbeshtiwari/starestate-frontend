@@ -1,121 +1,174 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import axiosInstance from '../views/utils/axiosInstance';
 
+export const fetchCities = async () => {
+    try {
+        const response = await axiosInstance.get(`/city/getCities`);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching cities:', error);
+        throw error;
+    }
+};
 const Footer = () => {
+    const [showButton, setShowButton] = useState(false);
+    const [isScrolled, setIsScrolled] = useState(false);
+
+
+    const handleScroll = () => {
+        if (window.scrollY > 0) {
+            setIsScrolled(true);
+        }
+
+        if (window.scrollY > 100) {
+            setShowButton(true);
+        } else {
+            setShowButton(false);
+        }
+    };
+
+    const scrollToTop = () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    };
+
+    useEffect(() => {
+        window.addEventListener('scroll', handleScroll);
+
+        return () => {
+            window.removeEventListener('scroll', handleScroll);
+        };
+    }, []);
+    const [cities, setCities] = useState([]);
+
+    useEffect(() => {
+        const getCities = async () => {
+            try {
+                const data = await fetchCities();
+                setCities(data);
+            } catch (error) {
+                console.error('Error fetching cities:', error);
+            }
+        };
+
+        getCities();
+    }, []);
     return (
-        <footer className="footer-area overflow-hidden float-left w-100">
-            <div className="container-lg">
-                <div className="padding border-bottom footer-keywords">
-                    <ul className="row list-inline">
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/city/mumbai">Apartments in Mumbai</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/mumbai/residential">Flats in Mumbai</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/mumbai/new-launch">New Projects in Mumbai</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/mumbai/commercial">Commercial Property in Mumbai</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/city/bangalore">Apartments in Bangalore</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/bangalore/residential">Flats in Bangalore</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/bangalore/new-launch">New Projects in Bangalore</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/bangalore/commercial">Commercial Property in Bangalore</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/city/pune">Apartments in Pune</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/pune/residential">Flats in Pune</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/pune/new-launch">New Projects in Pune</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/pune/commercial">Commercial Property in Pune</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/city/delhi">Apartments in Delhi</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/delhi/residential">Flats in Delhi</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/delhi/new-launch">New Projects in Delhi</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/delhi/commercial">Commercial Property in Delhi</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/city/gurugram">Apartments in Gurgaon</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/gurugram/residential">Flats in Gurgaon</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/gurugram/new-launch">New Projects in Gurgaon</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/gurugram/commercial">Commercial Property in Gurgaon</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/city/noida">Apartments in Noida</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/noida/residential">Flats in Noida</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/noida/new-launch">New Projects in Noida</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/noida/commercial">Commercial Property in Noida</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/city/ahmedabad">Apartments in Ahmedabad</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/ahmedabad/residential">Flats in Ahmedabad</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/ahmedabad/new-launch">New Projects in Ahmedabad</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/ahmedabad/commercial">Commercial Property in Ahmedabad</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/city/thane">Apartments in Thane</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/thane/residential">Flats in Thane</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/thane/new-launch">New Projects in Thane</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/thane/commercial">Commercial Property in Thane</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/city/mumbai">Apartments in Navi Mumbai</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/mumbai/residential">Flats in Navi Mumbai</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/mumbai/new-launch">New Projects in Navi Mumbai</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/mumbai/commercial">Commercial Property in Navi Mumbai</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/city/ghaziabad">Apartments in Ghaziabad</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/ghaziabad/residential">Flats in Ghaziabad</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/ghaziabad/new-launch">New Projects in Ghaziabad</a></li>
-                        <li className="col-md-3 col-sm-4"><a href="https://www.starestate.in/ghaziabad/commercial">Commercial Property in Ghaziabad</a></li>
-                    </ul>
-                </div>
-                <div className="padding border-bottom foot-links">
-                    <div className="inner">
-                        <div className="row gap-row">
-                            <div className="col-md-12 col-sm-12 foot-menu">
-                                <div className="insideBox">
+        <footer class="footer-area overflow-hidden float-left w-100">
+            <div class="container-lg">
+                <div class="padding border-bottom foot-links">
+                    <div class="inner">
+                        <div class="row gap-row">
+                            <div class="col-md-12 col-sm-12 foot-menu">
+                                <div class="insideBox">
                                     <h6>Cities</h6>
-                                    <ul className="list-inline footer-cities d-flex flex-wrap">
-                                        <li><a href="https://www.starestate.in/city/mumbai">Mumbai</a></li>
-                                        <li><a href="https://www.starestate.in/city/pune">Pune</a></li>
-                                        <li><a href="https://www.starestate.in/city/bangalore">Bangalore</a></li>
-                                        <li><a href="https://www.starestate.in/city/delhi">Delhi</a></li>
-                                        <li><a href="https://www.starestate.in/city/noida">Noida</a></li>
-                                        <li><a href="https://www.starestate.in/city/gurugram">Gurugram</a></li>
-                                        <li><a href="https://www.starestate.in/city/greater noida">Greater Noida</a></li>
-                                        <li><a href="https://www.starestate.in/city/agra">Agra</a></li>
-                                        <li><a href="https://www.starestate.in/city/ahmedabad">Ahmedabad</a></li>
-                                        <li><a href="https://www.starestate.in/city/thane">Thane</a></li>
-                                        <li><a href="https://www.starestate.in/city/navi mumbai">Navi Mumbai</a></li>
-                                        <li><a href="https://www.starestate.in/city/ghaziabad">Ghaziabad</a></li>
+                                    <ul class="list-inline footer-cities d-flex flex-wrap">
+                                        {cities.map((city) => (
+                                            <li key={city.id}>
+                                                <Link to="#">{city.location}</Link>
+                                            </li>
+                                        ))}
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div className="padding border-bottom">
-                    <div className="row">
-                        <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div className="foot-head">
-                                <h6 className='text-white'>About Us</h6>
+                <div class="padding foot-links">
+                    <div class="inner">
+                        <div class="row gap-row">
+                            <div class="col foot-menu">
+                                <div class="insideBox">
+                                    <h6>Projects</h6>
+                                    <ul class="list-inline">
+                                        <li><a href="https://www.starestate.in/category/luxury">Luxury</a></li>
+                                        <li><a href="https://www.starestate.in/category/commercial">Commercial</a></li>
+                                        <li><a href="https://www.starestate.in/category/residential">Residential</a></li>
+                                        <li><a href="https://www.starestate.in/category/new-launch">New Launchs</a></li>
+                                    </ul>
+                                </div>
                             </div>
-                            <ul className="list-unstyled">
-                                <li><a href="https://www.starestate.in/about-us">Company Overview</a></li>
-                                <li><a href="https://www.starestate.in/about-us">Careers</a></li>
-                                <li><a href="https://www.starestate.in/contact-us">Contact Us</a></li>
-                                <li><a href="https://www.starestate.in/our-team">Our Team</a></li>
-                                <li><a href="https://www.starestate.in/faqs">FAQs</a></li>
-                            </ul>
-                        </div>
-                        <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div className="foot-head">
-                                <h6 className='text-white'>Quick Links</h6>
+                            <div class="col foot-menu">
+                                <div class="insideBox">
+                                    <h6>Company</h6>
+                                    <ul class="list-inline">
+                                        <li><a href="https://www.starestate.in/about-us">About Star Estate</a></li>
+                                        <li><a href="https://www.starestate.in/about-us#mission">Mission &amp; Vision</a></li>
+                                        <li><a href="https://www.starestate.in/about-us#who-we-are">Who We Are</a></li>
+                                        <li><a href="https://www.starestate.in/clients-speak">Client's Speak</a></li>
+                                        <li><a href="https://www.starestate.in/faqs">FAQs</a></li>
+                                    </ul>
+                                </div>
                             </div>
-                            <ul className="list-unstyled">
-                                <li><a href="https://www.starestate.in/terms-of-use">Terms of Use</a></li>
-                                <li><a href="https://www.starestate.in/privacy-policy">Privacy Policy</a></li>
-                                <li><a href="https://www.starestate.in/terms-of-use">Disclaimer</a></li>
-                                <li><a href="https://www.starestate.in/our-partners">Our Partners</a></li>
-                                <li><a href="https://www.starestate.in/testimonials">Testimonials</a></li>
-                            </ul>
-                        </div>
-                        <div className="col-lg-4 col-md-4 col-sm-4 col-xs-12">
-                            <div className="foot-head">
-                                <h6 className='text-white'>Follow Us</h6>
+                            <div class="col foot-menu">
+                                <div class="insideBox">
+                                    <h6>Media</h6>
+                                    <ul class="list-inline">
+                                        <li><a href="#">Awards</a></li>
+                                        <li><a href="https://www.starestate.in/news">News</a></li>
+                                        <li><a href="https://www.starestate.in/events">Events</a></li>
+                                        <li><a href="https://www.starestate.in/blogs">Blogs</a></li>
+                                        <li><a href="https://www.starestate.in/advertisements">Advertisements</a></li>
+                                    </ul>
+                                </div>
                             </div>
-                            <ul className="list-unstyled">
-                                <li><a href="https://www.facebook.com/starestate" target="_blank" rel="noopener noreferrer">Facebook</a></li>
-                                <li><a href="https://twitter.com/starestate" target="_blank" rel="noopener noreferrer">Twitter</a></li>
-                                <li><a href="https://www.instagram.com/starestate" target="_blank" rel="noopener noreferrer">Instagram</a></li>
-                                <li><a href="https://www.linkedin.com/company/starestate" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-                                <li><a href="https://www.youtube.com/channel/starestate" target="_blank" rel="noopener noreferrer">YouTube</a></li>
-                            </ul>
+                            <div class="col foot-menu">
+                                <div class="insideBox">
+                                    <h6>Explore</h6>
+                                    <ul class="list-inline">
+                                        <li><a href="https://www.starestate.in/careers">Careers</a></li>
+                                        <li><a href="https://www.starestate.in/contact-us">Contact Us</a></li>
+                                        <li><a href="https://www.starestate.in/buyer-guide">Buyer Guide</a></li>
+                                        <li><a href="https://www.starestate.in/terms-and-conditions">Terms &amp; Conditions</a></li>
+                                        <li><a href="https://www.starestate.in/sitemap">Sitemap</a></li>
+
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col foot-menu socialBox">
+                                <div class="insideBox">
+                                    <h6>Get Social</h6>
+                                    <ul class="list-inline socialIcons solid">
+                                        <li class="list-inline-item"><a href="https://www.facebook.com/starestate.in" target="_blank" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
+                                        <li class="list-inline-item"><a href="https://www.instagram.com/starestate_official/" target="_blank" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Instagram"><i class="fab fa-instagram"></i></a></li>
+                                        <li class="list-inline-item"><a href="https://www.linkedin.com/company/star-estate" target="_blank" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
+                                        <li class="list-inline-item"><a href="https://twitter.com/starestate2" target="_blank" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Twitter"><i class="fab fa-twitter"></i></a></li>
+                                        <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCwfDf7Ut8jrkjiBeRnbZUPw" target="_blank" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="YouTube"><i class="fab fa-youtube"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div className="padding footer-copy-right text-center">
-                    <p className='text-white'>© 2024 Starestate. All rights reserved.</p>
+
+            </div>
+            <div class="footer-bottom">
+                <div class="container-lg">
+                    <div class="footer-logo">
+                        <a href="https://www.starestate.in/"><img src="https://www.starestate.in/assets/images/logo-starestate.png" alt="Star Estate" /></a>
+                        <div class="partner-rera">
+                            <p class="mb-0"><b>RERA No.: UPRERAAGT10202</b> <br />https://up-rera.in/Agents</p>
+                        </div>
+                    </div>
+                    <div class="copyrights">
+                        <p>© Star Estate 2024</p>
+                        <p>Designed &amp; Developed by: <img src="https://www.starestate.in/assets/images/ecis.png" /></p>
+                    </div>
                 </div>
+            </div>
+            <div
+                className="button-top"
+                style={{
+                    opacity: isScrolled ? (showButton ? 1 : 0) : 0,
+                    pointerEvents: showButton ? 'auto' : 'none',
+                    transition: 'opacity 0.5s ease',
+                }}
+                onClick={scrollToTop}
+            >
+                <i className="fa fa-chevron-up" style={{ color: 'white' }}></i>
             </div>
         </footer>
     );

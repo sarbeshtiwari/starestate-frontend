@@ -1,10 +1,10 @@
 import React from 'react';
 
 const newsItems = [
-  { title: 'Awards', src: 'assets/images/awards-th.jpg', alt: 'Awards' },
-  { title: 'News', src: 'assets/images/news-th.jpg', alt: 'News' },
-  { title: 'Events', src: 'assets/images/events-th.jpg', alt: 'Events' },
-  { title: 'Blogs', src: 'assets/images/blogs-th.jpg', alt: 'Blogs' }
+  { title: 'Awards', src: '/star-estate-react/assets/images/awards-th.jpg', alt: 'star-estate-react/Awards' },
+  { title: 'News', src: '/star-estate-react/assets/images/news-th.jpg', alt: 'News' },
+  { title: 'Events', src: '/star-estate-react/assets/images/events-th.jpg', alt: 'Events' },
+  { title: 'Blogs', src: '/star-estate-react/assets/images/blogs-th.jpg', alt: 'Blogs' }
 ];
 
 const NewsViews = () => (

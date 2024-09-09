@@ -1,3 +1,4 @@
+import './App.css';
 import Banner from "./banner";
 import CitywiseContainer from "./cities";
 import InsightsTools from "./insight_tools";

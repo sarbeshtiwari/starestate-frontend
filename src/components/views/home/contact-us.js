@@ -1,13 +1,17 @@
 import React from 'react'
+
 import { Link } from 'react-router-dom'
+import Header from '../../widgets/header'
+import Footer from '../../widgets/footer'
 
 function ContactUs() {
   return (
     <div>
+        <Header />
         <div class="insideBanner">
         <picture>
 
-            <img src="../assets/images/banner-emi-calculator1.jpg" class="h-100 object-cover object-position-bottom rounded" alt="Star Estate" />
+            <img src="/star-estate-react/assets/images/banner-emi-calculator1.jpg" class="h-100 object-cover object-position-bottom rounded" alt="Star Estate" />
         </picture>
     </div>
     <div class="w-100">
@@ -164,6 +168,7 @@ function ContactUs() {
             </div>
         </div>
     </div>
+    <Footer />
     </div>
   )
 }

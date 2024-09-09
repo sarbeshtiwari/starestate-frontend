@@ -1,7 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Swiper from 'swiper';
+import Footer from '../../widgets/footer';
 
 const SocialMediaFeed = () => {
+
+    const [activeFeed, setActiveFeed] = useState('instagram');
     useEffect(() => {
         const script = document.createElement('script');
         script.src = "https://static.elfsight.com/platform/platform.js";
@@ -15,9 +18,9 @@ const SocialMediaFeed = () => {
     }, []);
 
     const handleToggle = (target) => {
+        setActiveFeed(target);
         document.querySelectorAll('.toggleBtn').forEach(btn => btn.classList.remove('active'));
-        document.querySelector(`.toggleBtn[data-target="${target}"]`).classList.add('active');
-        // Add logic to display corresponding feed
+        document.querySelector(`.toggleBtn[data-bs-target="${target}"]`).classList.add('active');
     };
     useEffect(() => {
         var social = new Swiper(".social-slider", {
@@ -48,19 +51,20 @@ const SocialMediaFeed = () => {
                 },
             }
         });
-      }, []);
+    }, []);
     return (
         <>
-            <div class="w-100 padding overflow-hidden hm-newsContainer">
-                <div class="container-lg">
-                    <div class="heading mx-auto text-center">
+            <div className="w-100 padding overflow-hidden hm-newsContainer">
+                <div className="container-lg">
+                    <div className="heading mx-auto text-center">
                         <h3>Social Media Feed</h3>
                     </div>
-                    <div class="toggleHead">
+                    <div className="toggleHead">
                         <button
                             className="toggleBtn active"
                             data-bs-target="instagram"
                             style={{ '--clr': 'var(--instagram)' }}
+                            onClick={() => handleToggle('instagram')}
                         >
                             <i className="fab fa-instagram"></i> Instagram
                         </button>
@@ -68,102 +72,24 @@ const SocialMediaFeed = () => {
                             className="toggleBtn"
                             data-bs-target="youtube"
                             style={{ '--clr': 'var(--youtube)' }}
+                            onClick={() => handleToggle('youtube')}
                         >
                             <i className="fab fa-youtube"></i> YouTube
                         </button>
 
                     </div>
-                    <div class="social-container">
-                        <div class="swiper social-slider">
-                            <div class="swiper-wrapper">
-                                <div class="swiper-slide socialBox">
-                                    <div class="cube-container">
-                                        <div class="photo-cube">
-                                            <figure class="img-fluid h-100 front">
-                                                <img src="../assets/images/instagram/1.jpg" class="h-100 object-cover" alt="" />
-                                            </figure>
-                                            <div class="left photo-desc">
-                                                <i class="fab fa-instagram"></i>
-                                                <div class="likes d-flex justify-content-center align-items-center">
-                                                    <span><i class="fa-regular fa-heart"></i> 88</span>
-                                                    <span><i class="fa-regular fa-comment"></i> 4</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide socialBox">
-                                    <div class="cube-container">
-                                        <div class="photo-cube">
-                                            <figure class="img-fluid h-100 front">
-                                                <img src="../assets/images/instagram/2.jpg" class="h-100 object-cover" alt="" />
-                                            </figure>
-                                            <div class="left photo-desc">
-                                                <i class="fab fa-instagram"></i>
-                                                <div class="likes d-flex justify-content-center align-items-center">
-                                                    <span><i class="fa-regular fa-heart"></i> 31</span>
-                                                    <span><i class="fa-regular fa-comment"></i> 0</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide socialBox">
-                                    <div class="cube-container">
-                                        <div class="photo-cube">
-                                            <figure class="img-fluid h-100 front">
-                                                <img src="../assets/images/instagram/3.jpg" class="h-100 object-cover" alt="" />
-                                            </figure>
-                                            <div class="left photo-desc">
-                                                <i class="fab fa-instagram"></i>
-                                                <div class="likes d-flex justify-content-center align-items-center">
-                                                    <span><i class="fa-regular fa-heart"></i> 5</span>
-                                                    <span><i class="fa-regular fa-comment"></i> 0</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide socialBox">
-                                    <div class="cube-container">
-                                        <div class="photo-cube">
-                                            <figure class="img-fluid h-100 front">
-                                                <img src="../assets/images/instagram/4.jpg" class="h-100 object-cover" alt="" />
-                                            </figure>
-                                            <div class="left photo-desc">
-                                                <i class="fab fa-instagram"></i>
-                                                <div class="likes d-flex justify-content-center align-items-center">
-                                                    <span><i class="fa-regular fa-heart"></i> 9</span>
-                                                    <span><i class="fa-regular fa-comment"></i> 0</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="swiper-slide socialBox">
-                                    <div class="cube-container">
-                                        <div class="photo-cube">
-                                            <figure class="img-fluid h-100 front">
-                                                <img src="../assets/images/instagram/5.jpg" class="h-100 object-cover" alt="" />
-                                            </figure>
-                                            <div class="left photo-desc">
-                                                <i class="fab fa-instagram"></i>
-                                                <div class="likes d-flex justify-content-center align-items-center">
-                                                    <span><i class="fa-regular fa-heart"></i> 8</span>
-                                                    <span><i class="fa-regular fa-comment"></i> 0</span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swiper-button-prev"></div>
-                            <div class="swiper-button-next"></div>
-                        </div>
+                    <div className="social-container">
+                        {activeFeed === 'instagram' && (
+                            <div className="elfsight-app-1001f272-d148-4800-8299-64da2a0c4604" data-elfsight-app-lazy></div>
+                        )}
+                        {activeFeed === 'youtube' && (
+                            <div className="elfsight-app-fab7fe60-7d92-4ccd-9211-4ef7e8daa1dc" data-elfsight-app-lazy></div>
+                        )}
                     </div>
 
                 </div>
             </div>
+            <Footer />
         </>
     );
 }
