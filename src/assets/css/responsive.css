@@ -1,10 +1,6 @@
 
 /*responsive*/
-@media (min-width: 1200px) {
-  .container, .container-lg, .container-md, .container-sm, .container-xl {
-      max-width: 1140px !important;
-  }
-}
+
 @media (min-width: 1320px) {
   .container-lg{max-width: 1260px;}
 }
@@ -31,17 +27,17 @@
   .projectPageWrapper {margin-top: 75px;}
 
   /* Project page */
-  .projectBanner{height: auto;}
-  .reraBox{justify-content: center;}
-  .hero-textbox{position: static; transform: none; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid rgb(0 0 0 / 15%);}
-  .hero-textbox .inner{max-width: 100%; text-align: center; color: initial; padding: 0; background-color: transparent; backdrop-filter: none; box-shadow: none;}
+  .projectBanner{height: auto !important;}
+  .reraBox{justify-content: center !important;}
+  .hero-textbox{position: static !important; transform: none !important; margin-bottom: 1.5rem !important; padding-bottom: 1rem !important; border-bottom: 1px solid rgb(0 0 0 / 15%) !important;}
+  .hero-textbox .inner{max-width: 100%; text-align: center; color: initial !important; padding: 0; background-color: transparent !important; backdrop-filter: none; box-shadow: none;}
   .hero-textbox .inner .heading{margin-left: auto; margin-right: auto;}
   .hero-textbox .inner .heading .h3{font-size: 2.5rem;}
   .page-location.project-location{font-size: inherit; letter-spacing: 1px;}
   .page-location.project-location i{color: var(--primary-color) !important;}
   .hero-textbox .hero-pointers{justify-content: center;}
   .hero-textbox .hero-pointers li:not(:last-child){border-right-color: rgb(0 0 0 / 15%);}
-  .heroFormContainer{position: static; max-width: 100%;}
+  .heroFormContainer{position: static !important; max-width: 100% !important;}
   .section-details{text-align: justify !important; text-align-last: center;}
   .partner-logo{width: 150px;}
   /* Project page */
@@ -50,7 +46,7 @@
 @media (max-width: 767.9px) {
   .container-lg{padding-left: 1.5rem; padding-right: 1.5rem;}
   .gap-row {row-gap: 20px;}
-  .header .logo img{height: 30px;}
+  .header .logo img{height: 30px !important;}
   .header .main-header .menu > ul{gap: 0 20px;}
   .header .main-header ul li a{padding: 12px 0;}
   .menuContainer{top: 39px;}
@@ -163,7 +159,7 @@
   .amenBox p{font-size: .875em;}
   .planBase .fpDetails small{font-size: 1em;}
   .partnerBox .heading{width: 100%; padding-right: 0; padding-bottom: 1.25rem; margin-bottom: 1.25rem !important; border-right: 0; border-bottom: 1px solid rgb(0 0 0 / 15%);}
-  .partner-logo {width: 130px;}
+  .partner-logo {width: 130px !important;}
   /* project page */
 }
 

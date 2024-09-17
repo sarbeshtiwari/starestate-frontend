@@ -1,13 +1,10 @@
 import React, { useEffect, useState } from 'react'
-
 import axiosInstance from '../utils/axiosInstance';
 import { Link } from 'react-router-dom';
 import Header from '../../widgets/header';
 import Footer from '../../widgets/footer';
-
 function Career() {
     const [jobs, setJobs] = useState([]);
-
     useEffect(() => {
         const fetchJobs = async () => {
             try {
@@ -18,7 +15,6 @@ function Career() {
                 console.error('Failed to fetch Jobs', error);
             }
         };
-
         fetchJobs();
     }, []);
   return (
@@ -26,7 +22,6 @@ function Career() {
         <Header />
         <div className="insideBanner">
         <picture>
-
             <img src="images/banner-emi-calculator1.jpg" className="h-100 object-cover object-position-bottom rounded" alt="Star Estate" />
         </picture>
     </div>
@@ -135,5 +130,4 @@ function Career() {
     </div>
   )
 }
-
 export default Career

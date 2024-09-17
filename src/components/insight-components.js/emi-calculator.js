@@ -84,15 +84,15 @@ function EmiCalculator() {
             <div className="row gap-form-row align-items-end">
                 <div className="col-md-3 form-group mb-0">
                     <label>Loan Amount</label>
-                    <input type="text" className="form-select mb-0 loan_amount" value={loanAmount} onChange={handleLoanAmountChange} />
+                    <input type="text" className="form-control mb-0 loan_amount" value={loanAmount} onChange={handleLoanAmountChange} />
                 </div>
                 <div className="col-md-3 form-group mb-0">
                     <label>Tenure (Monthly)</label>
-                    <input type="text" className="form-select mb-0 loan_tenure" value={loanTenure} onChange={handleLoanTenureChange} />
+                    <input type="text" className="form-control mb-0 loan_tenure" value={loanTenure} onChange={handleLoanTenureChange} />
                 </div>
                 <div className="col-md-3 form-group mb-0">
                     <label>Interest Rate (% P.A.)</label>
-                    <input type="text" className="form-select mb-0 interest_rate" value={interestRate} onChange={handleInterestRateChange} />
+                    <input type="text" className="form-control mb-0 interest_rate" value={interestRate} onChange={handleInterestRateChange} />
                 </div>
                 <div className="col-md-3 emiFieldContainer">
                     <div className="readmore mt-0">

@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Swiper from 'swiper';
 import Footer from '../../widgets/footer';
-
 const SocialMediaFeed = () => {
-
     const [activeFeed, setActiveFeed] = useState('instagram');
     useEffect(() => {
         const script = document.createElement('script');
@@ -11,12 +9,10 @@ const SocialMediaFeed = () => {
         script.dataset.useServiceCore = "";
         script.defer = true;
         document.body.appendChild(script);
-
         return () => {
             document.body.removeChild(script);
         };
     }, []);
-
     const handleToggle = (target) => {
         setActiveFeed(target);
         document.querySelectorAll('.toggleBtn').forEach(btn => btn.classList.remove('active'));
@@ -76,7 +72,6 @@ const SocialMediaFeed = () => {
                         >
                             <i className="fab fa-youtube"></i> YouTube
                         </button>
-
                     </div>
                     <div className="social-container">
                         {activeFeed === 'instagram' && (
@@ -86,12 +81,10 @@ const SocialMediaFeed = () => {
                             <div className="elfsight-app-fab7fe60-7d92-4ccd-9211-4ef7e8daa1dc" data-elfsight-app-lazy></div>
                         )}
                     </div>
-
                 </div>
             </div>
             <Footer />
         </>
     );
 }
-
 export default SocialMediaFeed;

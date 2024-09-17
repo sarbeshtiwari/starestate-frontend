@@ -27,7 +27,7 @@
     .projectPageWrapper {margin-top: 75px;}
   
     /* Project page */
-    .projectBanner{height: auto ;}
+    .projectBanner{height: auto;}
     .reraBox{justify-content: center;}
     .hero-textbox{position: static; transform: none; margin-bottom: 1.5rem; padding-bottom: 1rem; border-bottom: 1px solid rgb(0 0 0 / 15%);}
     .hero-textbox .inner{max-width: 100%; text-align: center; color: initial; padding: 0; background-color: transparent; backdrop-filter: none; box-shadow: none;}
@@ -38,12 +38,15 @@
     .hero-textbox .hero-pointers{justify-content: center;}
     .hero-textbox .hero-pointers li:not(:last-child){border-right-color: rgb(0 0 0 / 15%);}
     .heroFormContainer{position: static; max-width: 100%;}
-    .section-details{text-align: justify !important; text-align-last: center;}
+    .section-details{text-align: justify; text-align-last: center;}
     .partner-logo{width: 150px;}
+    .react-tel-input .form-control{ width: 215px;
+    }
     /* Project page */
   }
   
   @media (max-width: 767.9px) {
+
     .container-lg{padding-left: 1.5rem; padding-right: 1.5rem;}
     .gap-row {row-gap: 20px;}
     .header .logo img{height: 30px;}
@@ -134,12 +137,15 @@
   @media (max-width: 540px) {
     .bannerContainer{top: 3rem; transform: none; left: 0;}
     .search-filter .readmore{width: 100% !important;}
-    
+    .react-tel-input .form-control{ width: 215px !important;
+    }
     /* project page */
     /* project page */
   }
   
   @media (max-width: 425px) {
+    .react-tel-input .form-control{ width: 215px !important;
+    }
     .filter-form .col {flex-basis: inherit;}
     .search-filter{padding: 0;}
     .search-filter .filter-form .filter-property-type {flex-wrap: wrap;}
@@ -162,8 +168,10 @@
     .partner-logo {width: 130px;}
     /* project page */
   }
-  
+
   @media (max-width: 390px) {
+    .react-tel-input .form-control{ width: 215px !important;
+    }
     .padding{padding-top: 3rem; padding-bottom: 3rem;}
     .statBox p{font-size: 11px;}
     .readmore .button{min-width: 100px; padding: 7px 15px; font-size: 12px;}

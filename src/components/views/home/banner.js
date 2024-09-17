@@ -3,24 +3,21 @@ import { Carousel } from 'react-bootstrap';
 import Typed from 'typed.js';
 import { fetchCategories, fetchCities, fetchProjects } from '../../../apis/home-page-api';
 import './banner.css';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Header from '../../widgets/header';
+import axiosInstance from '../utils/axiosInstance';
 const Banner = () => {
   useEffect(() => {
     const scrollDown = document.querySelector('.scrollDown');
     const scrollToElement = document.querySelector('.scrollto');
-
     const handleScroll = () => {
       window.scrollTo({
         top: scrollToElement.offsetTop,
         behavior: 'smooth',
       });
     };
-
     scrollDown.addEventListener('click', handleScroll);
-
     return () => {
-      // Cleanup event listener when component unmounts
       scrollDown.removeEventListener('click', handleScroll);
     };
   }, []);
@@ -34,36 +31,99 @@ const Banner = () => {
     projectPrice: '',
     property_type: '',
   });
-
   useEffect(() => {
     fetchCategories().then(data => setCategories(data)).catch(console.error);
     fetchCities().then(data => setCities(data)).catch(console.error);
-
-    if (formData.property_type && formData.cityLocation) {
-      fetchProjects(formData.property_type)
-        .then(data => {
-          const filteredProjects = data.filter(project => project.cityLocation === formData.cityLocation);
-          console.log(filteredProjects);
-          setProjects(filteredProjects);
-        })
-        .catch(console.error);
-    }
+    // if (formData.property_type && formData.cityLocation) {
+    //   fetchProjects(formData.property_type)
+    //     .then(data => {
+    //       const filteredProjects = data.filter(project => project.cityLocation === formData.cityLocation);
+    //       console.log(filteredProjects);
+    //       setProjects(filteredProjects);
+    //     })
+    //     .catch(console.error);
+    // }
   }, [formData.property_type, formData.cityLocation]);
-
   const handleChange = async (e) => {
     const { name, value } = e.target;
     setFormData({
       ...formData,
       [name]: value,
     });
-
     if (name === 'property_type' && value) {
       await fetchProjects(value).then(data => setProjects(data)).catch(console.error);
     }
-
   };
-  const [index, setIndex] = useState(0);
+  const navigate = useNavigate();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
+    const parsePrice = (price) => {
+      if (!price) return '';
+      const cleanPrice = price.replace(/[^0-9.]/g, '');
+      const numericPrice = parseFloat(cleanPrice);
+      if (price.toLowerCase().includes('lakh')) {
+        return numericPrice * 100000;
+      }
+      if (price.toLowerCase().includes('cr')) {
+        return numericPrice * 10000000;
+      }
+      return isNaN(numericPrice) ? '' : numericPrice;
+    };
+  
+    try {
+      let minPrice = '';
+      let maxPrice = '';
+
+      if (formData.projectPrice.includes('-')) {
+        // Range case
+        [minPrice, maxPrice] = formData.projectPrice.split('-').map(price => parsePrice(price.trim()));
+  
+        // Log for debugging
+        console.log('Range case:', { minPrice, maxPrice });
+  
+        // Adjust for specific cases
+        if (parseFloat(maxPrice) === 10000000) {
+          maxPrice = 10000000; // Set maxPrice to 1 cr when it's exactly 1 cr
+        }
+      } else {
+        // Single value case
+        const singlePrice = parsePrice(formData.projectPrice.trim());
+  
+        // Log for debugging
+        console.log('Single value case:', { singlePrice });
+
+        if (singlePrice === 10000000) {
+          minPrice = 0;          // Set minPrice to 0
+          maxPrice = 10000000;   // Set maxPrice to 1 cr
+        } else {
+          minPrice = maxPrice = singlePrice; // Set both to the single value
+        }
+      }
+  
+      // Log the final minPrice and maxPrice
+      console.log('Final prices:', { minPrice, maxPrice });
+  
+      // Create query parameters
+      const queryParams = new URLSearchParams({
+        projectType: formData.property_type,
+        propertyLocation: formData.cityLocation,
+        minPrice: minPrice,
+        maxPrice: maxPrice
+      }).toString();
+
+      console.log('Query Params:', queryParams);
+
+      // Navigate to the All Projects page with the query parameters
+      navigate(`/projects?${queryParams}`);
+    } catch (error) {
+      console.error('Error submitting search:', error);
+    }
+  };
+
+
+
+  const [index, setIndex] = useState(0);
   useEffect(() => {
     const typed = new Typed('#typed', {
       strings: ['Apartment', 'Villa', 'Mall', 'Office Space'],
@@ -74,24 +134,33 @@ const Banner = () => {
       preStringTyped: (arrayPos, self) => {
         const typedText = self.strings[arrayPos].trim();
         const items = ['Apartment', 'Villa', 'Mall', 'Office Space'];
-
         const foundIndex = items.indexOf(typedText);
         if (foundIndex !== -1) {
           setIndex(foundIndex);
         }
       },
     });
-
     return () => {
       typed.destroy();
     };
   }, []);
+  const [filter, setFilter] = useState([]);
+    useEffect(() => {
+        const fetchFilter = async () => {
+            try {
+                const response = await axiosInstance.get(`addProjects/projects`);
+                setFilter(response.data);
+            } catch (error) {
+                console.error('Failed to fetch Awards', error);
+            }
+        };
+        fetchFilter();
+    }, []);
   return (
     <div>
       <Header />
-
     <div id="banner" className="carousel slide carousel-fade banner" data-bs-pause="false" data-bs-ride="carousel">
-       <Carousel indicators={false} controls={false} activeIndex={index}>
+       <Carousel indicators={false} controls={false} activeIndex={index} className='h-100'>
         <Carousel.Item>
           <picture>
             <source media="(max-width: 540px)" srcSet="images/homebanner/new/banner-apartments-m.jpg" />
@@ -129,7 +198,7 @@ const Banner = () => {
                 You deserve the best  <span id="typed" >Apartment</span><span className="typed-cursor" aria-hidden="true"></span>
               </span>
               <div className="filter-form">
-                <form method="POST" id="categoryfilter" encType="multipart/form-data">
+                <form id="categoryfilter" encType="multipart/form-data" onSubmit={handleSubmit}>
                   <div className="row gx-2">
                     <div className="col-md-10">
                       <div className="inner">
@@ -177,48 +246,12 @@ const Banner = () => {
                               onChange={handleChange}
                             >
                               <option value="">Budget</option>
-                              <option value="1 Cr">Below 1 Cr.</option>
-                              <option value="1 Cr">Above 1 Cr.</option>
-                              <option value="2 Cr">Above 2 Cr.</option>
-                              <option value="3 Cr">Above 3 Cr.</option>
-                              <option value="4 Cr">Above 4 Cr.</option>
-                              <option value="5 Cr">Above 5 Cr.</option>
+                              <option value="10000000">UpTo 1 Cr.</option>
+                              <option value="10000000-30000000">1 - 3 Cr.</option>
+                              <option value="30000000-50000000">3 - 5 Cr.</option>
+                              <option value="50000000">Above 5 Cr.</option>
                             </select>
                           </div>
-                          {/* <div className="col mb-0 form-group">
-                            <select
-                              name="projectConfiguration"
-                              id="projectConfiguration"
-                              className="form-select bg-white my-0"
-                              value={formData.projectConfiguration}
-                              onChange={handleChange}
-                            >
-                              <option value="">Configuration</option>
-                              <option value="2 BHK">2 BHK</option>
-                              <option value="3 BHK">3 BHK</option>
-                              <option value="4 BHK">4 BHK</option>
-                              <option value="5 BHK">5 BHK</option>
-                              <option value="Villa">Villa</option>
-                              <option value="Independent Homes">Independent Homes</option>
-                              <option value="Penthouse">Penthouse</option>
-                            </select>
-                          </div> */}
-                          {/* <div className="col mb-0 form-group">
-                            <select
-                              name="projectName"
-                              id="projectName"
-                              className="form-select bg-white my-0"
-                              value={formData.projectName}
-                              onChange={handleChange}
-                            >
-                              <option value="">Projects</option>
-                              {projects.map(project => (
-                                <option key={project._id} value={project.projectName}>
-                                  {project.projectName}
-                                </option>
-                              ))}
-                            </select>
-                          </div> */}
                         </div>
                       </div>
                     </div>
@@ -231,8 +264,7 @@ const Banner = () => {
                   </div>
                 </form>
                 <div className="filter-property-type d-none d-md-flex">
-                  <a href="#">New Launches</a>
-                  <a href="#">Luxury Properties</a>
+                  <Link to="/projects/new-launch">New Launches</Link>
                   <Link to='/projects/commercial'>Commercial Properties</Link>
                   <Link to='/projects/residential'>Residential Properties</Link>
                 </div>
@@ -240,13 +272,10 @@ const Banner = () => {
             </div>
           </div>
         </div>
-
       </div>
       <div className="scrollDown d-none d-md-block">Scroll<br /><i className="fa fa-chevron-down"></i></div>
     </div>
-
     </div>
   );
 };
-
 export default Banner;

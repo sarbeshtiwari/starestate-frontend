@@ -1,20 +1,92 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import Header from '../widgets/header'
 import Footer from '../widgets/footer'
+import axiosInstance from '../views/utils/axiosInstance';
+import axios from 'axios';
+
+
+export const sendNRIData = async (formData) => {
+    try {
+        const response = await axiosInstance.post(`/NRIQuery/addNRIQuery`, formData);
+        return response;
+    } catch (error) {
+        console.error('Error sending data:', error);
+        throw error;
+    }
+};
 
 function NriGuidelines() {
+    const [successMessage, setSuccessMessage] = useState('');
+    const [formData, setFormData] = useState({
+        Name: '',
+        Email: '',
+        phoneNumber: '',
+        user_query: '',
+        utm_source: '',
+        utm_medium: '',
+        utm_campaign: '',
+        utm_term: '',
+        utm_content: ''
+    });
+
+    useEffect(() => {
+        // Extract UTM parameters from the URL
+        const params = new URLSearchParams(window.location.search);
+        const utmParams = {
+            utm_source: params.get('utm_source') || '',
+            utm_medium: params.get('utm_medium') || '',
+            utm_campaign: params.get('utm_campaign') || '',
+            utm_term: params.get('utm_term') || '',
+            utm_content: params.get('utm_content') || ''
+        };
+
+        setFormData(prevData => ({
+            ...prevData,
+            ...utmParams
+        }));
+    }, []);
+
+    const handleChange = (e) => {
+        setFormData({
+            ...formData,
+            [e.target.name]: e.target.value
+        });
+    };
+
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await sendNRIData(formData);
+            setSuccessMessage('Form submitted successfully!');
+            setTimeout(() => {
+                setSuccessMessage(''); // Clear message after some time
+            }, 2000);
+        } catch (error) {
+            setSuccessMessage('Failed to submit the form.');
+        }
+    };
     return (
         <div>
             <Header />
             <div className="insideBanner">
-
-                    <picture>
-
-                        <img src="/star-estate-react/assets/images/banner-nri.jpg" className="h-100 object-cover object-position-bottom rounded" alt="Star Estate" />
-                    </picture>
-
+                <picture>
+                    <source 
+                        media="(min-width: 992px)" 
+                        srcSet="/star-estate-react/assets/images/banner-nri.jpg" 
+                    />
+                    <source 
+                        media="(min-width: 768px)" 
+                        srcSet="/star-estate-react/assets/images/banner-nri-m.jpg" 
+                    />
+                    <img 
+                        src="/star-estate-react/assets/images/banner-nri-m.jpg" 
+                        className="h-100 object-cover object-position-bottom rounded" 
+                        alt="Star Estate" 
+                    />
+                </picture>
             </div>
+
 
             <div className="w-100">
                 <div className="container">
@@ -298,24 +370,29 @@ function NriGuidelines() {
                         <h2 className="mb-0">Express Your Interest</h2>
                     </div>
                     <div className="">
-                        <form method="post">
-                            <p className="status mb-0 text-warning"></p>
+                        <form method="post" onSubmit={handleSubmit}>
+                        <p className="status mb-0 text-warning">{successMessage}</p>
                             <div className="row g-3">
                                 <div className="col-md-4 mb-3">
                                     <label htmlFor="name" className="form-label">Name<sup className="text-danger">*</sup></label>
-                                    <input type="text" className="form-select" id="name" name="name" />
+                                    <input type="text" className="form-control" id="Name" name="Name" value={formData.Name}
+                    onChange={handleChange}/>
                                 </div>
                                 <div className="col-md-4 mb-3">
-                                    <label htmlFor="email" className="form-label">Email<sup className="text-danger">*</sup></label>
-                                    <input type="email" className="form-select" name="email" id="email" />
+                                    <label htmlFor="Email" className="form-label">Email<sup className="text-danger">*</sup></label>
+                                    <input type="email" className="form-control" name="Email" id="Email" value={formData.Email}
+                    onChange={handleChange}/>
                                 </div>
                                 <div className="col-md-4 mb-3">
-                                    <label htmlFor="mobile" className="form-label">Mobile<sup className="text-danger">*</sup></label>
-                                    <input type="tel" className="form-select" name="mobile" id="mobile" />
+                                    <label htmlFor="phoneNumber" className="form-label">Mobile<sup className="text-danger">*</sup></label>
+                                    <input type="tel" className="form-control" name="phoneNumber" id="phoneNumber"
+                                    value={formData.phoneNumber}
+                                    onChange={handleChange} />
                                 </div>
                                 <div className="col-md-12 mb-3">
-                                    <label htmlFor="msg_nri" className="form-label">Message</label>
-                                    <textarea className="form-select" name="msg_nri" id="msg_nri" rows="5"></textarea>
+                                    <label htmlFor="user_query" className="form-label">Message</label>
+                                    <textarea className="form-control" name="user_query" id="user_query" rows="5" value={formData.user_query}
+                    onChange={handleChange}></textarea>
                                 </div>
                                 <div className="col-md-12 d-flex readmore mt-0 justify-content-start">
                                     <input type="hidden" name="contact_action" value="active" />

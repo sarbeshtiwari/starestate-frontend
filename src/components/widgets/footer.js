@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import axiosInstance from '../views/utils/axiosInstance';
-
 export const fetchCities = async () => {
     try {
         const response = await axiosInstance.get(`/city/getCities`);
@@ -14,36 +13,29 @@ export const fetchCities = async () => {
 const Footer = () => {
     const [showButton, setShowButton] = useState(false);
     const [isScrolled, setIsScrolled] = useState(false);
-
-
     const handleScroll = () => {
         if (window.scrollY > 0) {
             setIsScrolled(true);
         }
-
         if (window.scrollY > 100) {
             setShowButton(true);
         } else {
             setShowButton(false);
         }
     };
-
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,
             behavior: 'smooth',
         });
     };
-
     useEffect(() => {
         window.addEventListener('scroll', handleScroll);
-
         return () => {
             window.removeEventListener('scroll', handleScroll);
         };
     }, []);
     const [cities, setCities] = useState([]);
-
     useEffect(() => {
         const getCities = async () => {
             try {
@@ -53,22 +45,21 @@ const Footer = () => {
                 console.error('Error fetching cities:', error);
             }
         };
-
         getCities();
     }, []);
     return (
-        <footer class="footer-area overflow-hidden float-left w-100">
-            <div class="container-lg">
-                <div class="padding border-bottom foot-links">
-                    <div class="inner">
-                        <div class="row gap-row">
-                            <div class="col-md-12 col-sm-12 foot-menu">
-                                <div class="insideBox">
+        <footer className="footer-area overflow-hidden float-left w-100">
+            <div className="container-lg">
+                {/* <div className="padding border-bottom foot-links">
+                    <div className="inner">
+                        <div className="row gap-row">
+                            <div className="col-md-12 col-sm-12 foot-menu">
+                                <div className="insideBox">
                                     <h6>Cities</h6>
-                                    <ul class="list-inline footer-cities d-flex flex-wrap">
+                                    <ul className="list-inline footer-cities d-flex flex-wrap">
                                         {cities.map((city) => (
                                             <li key={city.id}>
-                                                <Link to="#">{city.location}</Link>
+                                                <Link to={`/city/${city.slugURL}`}>{city.location}</Link>
                                             </li>
                                         ))}
                                     </ul>
@@ -76,84 +67,82 @@ const Footer = () => {
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="padding foot-links">
-                    <div class="inner">
-                        <div class="row gap-row">
-                            <div class="col foot-menu">
-                                <div class="insideBox">
+                </div> */}
+                <div className="padding foot-links">
+                    <div className="inner">
+                        <div className="row gap-row">
+                            <div className="col foot-menu">
+                                <div className="insideBox">
                                     <h6>Projects</h6>
-                                    <ul class="list-inline">
-                                        <li><a href="https://www.starestate.in/category/luxury">Luxury</a></li>
-                                        <li><a href="https://www.starestate.in/category/commercial">Commercial</a></li>
-                                        <li><a href="https://www.starestate.in/category/residential">Residential</a></li>
-                                        <li><a href="https://www.starestate.in/category/new-launch">New Launchs</a></li>
+                                    <ul className="list-inline">
+                                        <li><a href="#">Luxury</a></li>
+                                        <li><Link to='/projects/commercial'>Commercial</Link></li>
+                                        <li><Link to='/projects/residential'>Residential</Link></li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col foot-menu">
-                                <div class="insideBox">
+                            <div className="col foot-menu">
+                                <div className="insideBox">
                                     <h6>Company</h6>
-                                    <ul class="list-inline">
-                                        <li><a href="https://www.starestate.in/about-us">About Star Estate</a></li>
-                                        <li><a href="https://www.starestate.in/about-us#mission">Mission &amp; Vision</a></li>
-                                        <li><a href="https://www.starestate.in/about-us#who-we-are">Who We Are</a></li>
-                                        <li><a href="https://www.starestate.in/clients-speak">Client's Speak</a></li>
-                                        <li><a href="https://www.starestate.in/faqs">FAQs</a></li>
+                                    <ul className="list-inline">
+                                        <li><Link to='/about-us'>About Star Estate</Link></li>
+                                        <li><Link to='/about-us'>Mission &amp; Vision</Link></li>
+                                        <li><Link to='/about-us'>Who We Are</Link></li>
+                                        <li><Link to='/clients-speak'>Client's Speak</Link></li>
+                                        <li><Link to='/'>FAQs</Link></li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col foot-menu">
-                                <div class="insideBox">
+                            <div className="col foot-menu">
+                                <div className="insideBox">
                                     <h6>Media</h6>
-                                    <ul class="list-inline">
-                                        <li><a href="#">Awards</a></li>
-                                        <li><a href="https://www.starestate.in/news">News</a></li>
-                                        <li><a href="https://www.starestate.in/events">Events</a></li>
-                                        <li><a href="https://www.starestate.in/blogs">Blogs</a></li>
-                                        <li><a href="https://www.starestate.in/advertisements">Advertisements</a></li>
+                                    <ul className="list-inline">
+                                        <li><Link to='/awards'>Awards</Link></li>
+                                        <li><Link to='/news'>News</Link></li>
+                                        <li><Link to='/events'>Events</Link></li>
+                                        <li><Link to ='/blogs'>Blogs</Link></li>
+                                        <li><Link to='/advertisements'>Advertisements</Link></li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col foot-menu">
-                                <div class="insideBox">
+                            <div className="col foot-menu">
+                                <div className="insideBox">
                                     <h6>Explore</h6>
-                                    <ul class="list-inline">
-                                        <li><a href="https://www.starestate.in/careers">Careers</a></li>
-                                        <li><a href="https://www.starestate.in/contact-us">Contact Us</a></li>
-                                        <li><a href="https://www.starestate.in/buyer-guide">Buyer Guide</a></li>
-                                        <li><a href="https://www.starestate.in/terms-and-conditions">Terms &amp; Conditions</a></li>
-                                        <li><a href="https://www.starestate.in/sitemap">Sitemap</a></li>
-
+                                    <ul className="list-inline">
+                                        <li><Link to='/careers'>Careers</Link></li>
+                                        <li><Link to='/contact-us'>Contact Us</Link></li>
+                                        <li><Link to='/buyer-guide/'>Buyer Guide</Link></li>
+                                        <li><Link to='/'>Desclaimer</Link></li>
+                                        <li><Link to='/'>Privacy Policy</Link></li>
+                                        <li><Link to='/sitemap'>Sitemap</Link></li>
                                     </ul>
                                 </div>
                             </div>
-                            <div class="col foot-menu socialBox">
-                                <div class="insideBox">
+                            <div className="col foot-menu socialBox">
+                                <div className="insideBox">
                                     <h6>Get Social</h6>
-                                    <ul class="list-inline socialIcons solid">
-                                        <li class="list-inline-item"><a href="https://www.facebook.com/starestate.in" target="_blank" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-                                        <li class="list-inline-item"><a href="https://www.instagram.com/starestate_official/" target="_blank" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Instagram"><i class="fab fa-instagram"></i></a></li>
-                                        <li class="list-inline-item"><a href="https://www.linkedin.com/company/star-estate" target="_blank" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="LinkedIn"><i class="fab fa-linkedin-in"></i></a></li>
-                                        <li class="list-inline-item"><a href="https://twitter.com/starestate2" target="_blank" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Twitter"><i class="fab fa-twitter"></i></a></li>
-                                        <li class="list-inline-item"><a href="https://www.youtube.com/channel/UCwfDf7Ut8jrkjiBeRnbZUPw" target="_blank" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="YouTube"><i class="fab fa-youtube"></i></a></li>
+                                    <ul className="list-inline socialIcons solid">
+                                        <li className="list-inline-item"><a href="https://www.facebook.com/starestate.in" target="_blank" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Facebook"><i className="fab fa-facebook-f"></i></a></li>
+                                        <li className="list-inline-item"><a href="https://www.instagram.com/starestate_official/" target="_blank" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Instagram"><i className="fab fa-instagram"></i></a></li>
+                                        <li className="list-inline-item"><a href="https://www.linkedin.com/company/star-estate" target="_blank" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="LinkedIn"><i className="fab fa-linkedin-in"></i></a></li>
+                                        <li className="list-inline-item"><a href="https://twitter.com/starestate2" target="_blank" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Twitter"><i className="fab fa-twitter"></i></a></li>
+                                        <li className="list-inline-item"><a href="https://www.youtube.com/channel/UCwfDf7Ut8jrkjiBeRnbZUPw" target="_blank" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="YouTube"><i className="fab fa-youtube"></i></a></li>
                                     </ul>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-            <div class="footer-bottom">
-                <div class="container-lg">
-                    <div class="footer-logo">
+            <div className="footer-bottom">
+                <div className="container-lg">
+                    <div className="footer-logo">
                         <a href="https://www.starestate.in/"><img src="https://www.starestate.in/assets/images/logo-starestate.png" alt="Star Estate" /></a>
-                        <div class="partner-rera">
-                            <p class="mb-0"><b>RERA No.: UPRERAAGT10202</b> <br />https://up-rera.in/Agents</p>
+                        <div className="partner-rera">
+                            <p className="mb-0"><b>RERA No.: UPRERAAGT10202</b> <br />https://up-rera.in/Agents</p>
                         </div>
                     </div>
-                    <div class="copyrights">
+                    <div className="copyrights">
                         <p>© Star Estate 2024</p>
                         <p>Designed &amp; Developed by: <img src="https://www.starestate.in/assets/images/ecis.png" /></p>
                     </div>
@@ -173,5 +162,4 @@ const Footer = () => {
         </footer>
     );
 }
-
 export default Footer;
