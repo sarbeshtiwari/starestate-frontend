@@ -232,13 +232,13 @@ const Header = () => {
                             </div>
                         </li>
                         <li className="hasDropChild d-block d-sm-none">
-                            <Link to='/star-estae-react/projects'>Projects <i className="fa fa-caret-down"></i></Link>
+                            <a href="javascript:;">Projects <i className="fa fa-caret-down"></i></a>
                             <div className="dropdown">
                                 <ul className="list-inline">
-                                    <li><Link to='#'>Luxury</Link></li>
+                                    <li><Link to="/projects/luxury">Luxury</Link></li>
                                     <li><Link to='/projects/residential'>Residential</Link></li>
                                     <li><Link to='/projects/commercial'>Commercial</Link></li>
-                                    <li><Link to='#'>New Launches</Link></li>
+                                    <li><Link to="/projects/new-launch">New Launches</Link></li>
                                 </ul>
                             </div>
                         </li>

@@ -25,6 +25,7 @@
   .menuContainer .dropdown{display: none;}
   #banner{margin-top: 54px; height: 70vh;}
   .projectPageWrapper {margin-top: 75px;}
+  .toggleHead .toggleBtn::before{--brdwd: 90px;}
 
   /* Project page */
   .projectBanner{height: auto !important;}
@@ -53,7 +54,7 @@
   #banner{margin-top: 39px; height: 90vh;}
   .bannerContainer .h4{margin-bottom: 1rem; letter-spacing: 5px;}
   .search-filter{margin: 0 auto;}
-  .search-filter .filter-form{background-color: transparent; box-shadow: none; padding: 0;}
+  .banner .search-filter .filter-form{background-color: transparent; box-shadow: none; padding: 0;}
   .search-filter .filter-form .inner{background-color: transparent;}
   .filter-form .col{flex: 50%;}
   .search-filter .filter-form .form-group{border-right: none !important;}
@@ -64,7 +65,7 @@
   .hm-section-heading .inner, .project-slider-wrapper {padding: 1.5rem !important;}
   .hm-section-heading .inner{padding-top: 4rem !important; padding-bottom: 4rem !important;}
   .project_box, .swiper-slide.blogBox, .swiper-slide.testimBox, .row div[class^="col"]{padding-left: 10px; padding-right: 10px;}
-  .no-gutters>.col, .no-gutters>[class*=col-]{padding-right: 0 !important; padding-left: 0 !important;}
+  .row.g-0>.col, .row.g-0>[class*=col-]{padding-right: 0 !important; padding-left: 0 !important;}
   .eventBox a .event-content{padding: 15px;}
   .brand-logos{margin: 0 2rem; height: 50px; width: 80px;}
   .copyrights{flex-direction: row; justify-content: space-between; gap: 10px;}
@@ -93,6 +94,7 @@
   .all-cities .project_box .Project_box_img .img-fluid img{height: 150px;}
 
   .toggleHead .toggleBtn{max-width: fit-content;}
+  .toggleHead .toggleBtn::before{--brdwd: 40px;}
 
   .foot-links .gap-row {
     row-gap: 30px;
@@ -147,6 +149,7 @@
   .search-filter .form-group{margin-bottom: 15px;}
   .search-filter .form-control{font-size: 1rem;}
   .search-filter .filter-form .readmore button{width: 100%; padding: 10px 10px; font-size: 14px;}
+  button.close {width: 30px; height: 30px; top: 10px; right: 10px;}
   .modal-body{padding: 15px;}
   .modal-call{justify-content: space-between !important;}
   .modal-call h6{text-align: left;}
@@ -159,7 +162,9 @@
   .amenBox p{font-size: .875em;}
   .planBase .fpDetails small{font-size: 1em;}
   .partnerBox .heading{width: 100%; padding-right: 0; padding-bottom: 1.25rem; margin-bottom: 1.25rem !important; border-right: 0; border-bottom: 1px solid rgb(0 0 0 / 15%);}
+  .partnerBox{text-align: center;}
   .partner-logo {width: 130px !important;}
+  .partnerBox .project-qr-img{margin: 10px auto 0;}
   /* project page */
 }
 

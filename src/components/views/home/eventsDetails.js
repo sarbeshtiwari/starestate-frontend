@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import axiosInstance from '../utils/axiosInstance';
 import { Link, useParams } from 'react-router-dom';
+
+// import ReactFancyBox from 'react-fancybox'
+// import 'react-fancybox/lib/fancybox.css'
+
 import Header from '../../widgets/header';
 import Footer from '../../widgets/footer';
 function EventDetails() {
@@ -20,6 +24,7 @@ function EventDetails() {
         };
         fetchEventDetailsData();
     }, [slugURL]);
+    
     return (
         <div>
             <Header />
@@ -50,7 +55,14 @@ function EventDetails() {
                     </div>
                     <div className="row gap-row">
                         {eventDetails.map((events, index) => (
-                            <div key={index} className="col-lg-4 col-sm-6 award-slide w-auto">
+                            // Fancy Box for image modal
+                            // <div key={index} className="col-lg-4 col-sm-6 award-slide">
+                            //    <ReactFancyBox
+                            //         thumbnail={`${axiosInstance.defaults.globalURL}${events.eventImage}`}
+                            //         image={`${axiosInstance.defaults.globalURL}${events.eventImage}`}/>
+                            // </div>
+                            
+                            <div key={index} className="col-lg-4 col-sm-6 award-slide">
                                 <a href={`${axiosInstance.defaults.globalURL}${events.eventImage}`} alt={events.eventName || 'Events Image'} data-magnify="magnify" data-caption="Awards & Recognitions" className="inner p-3 d-block common-border">
                                     <img src={`${axiosInstance.defaults.globalURL}${events.eventImage}`} alt={events.eventName || 'Events Image'} />
                                 </a>

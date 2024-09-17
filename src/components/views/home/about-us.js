@@ -142,13 +142,7 @@ function AboutUs() {
             <div className="w-100 padding">
                 <div className="container padding">
                     <div className="row gap-row">
-                        <div className="col-lg-6 vmBox">
-                            <div className="inner pr-lg-4">
-                                <div className="heading"><h3>Mission</h3></div>
-                                <p className="mb-0">Star Estate aims to emerge as the most reliable, renowned, and reputed firm with its extensive team of expert agents, advisors, and developers. With excellent bandwidth of 250 employees and an expansive network spread over 4 states, Star Estates' mission is to become the epitome of real estate. In design, strength, name, and innovation.</p>
-                            </div>
-                        </div>
-                        <div className="col-lg-6 vmBox">
+                        <div className="col-lg-12 vmBox">
                             <div className="inner pl-lg-4">
                                 <div className="heading"><h3>Vision</h3></div>
                                 <p className="mb-0">Star Estate looks forward to a new India where we provide the luxury of comfortable housing at utmost affordability and ensure customer satisfaction as much as can be. We aim to eradicate the problems of poor infrastructure and estate and to bring about a revolution to how the new India lives.</p>

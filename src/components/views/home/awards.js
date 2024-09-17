@@ -49,12 +49,12 @@ function Awards() {
             </div>
             <div className="row gap-row">
             {awards.map((award, index) => (
-                <div  key={index} className="col-lg-4 col-sm-6 award-slide w-auto">
+                <div  key={index} className="col-lg-4 col-sm-6 award-slide">
                     <a href={`${axiosInstance.defaults.globalURL}${award.awardImage}`} alt={award.awardName || 'Award Image'} data-magnify="magnify" data-caption="Awards & Recognitions" className="inner p-3 d-block common-border">
-                    <img src={`${axiosInstance.defaults.globalURL}${award.awardImage}`} alt={award.awardName || 'Award Image'} />
-                </a>
+                        <img src={`${axiosInstance.defaults.globalURL}${award.awardImage}`} alt={award.awardName || 'Award Image'} />
+                    </a>
                 </div>
-                 ))}
+            ))}
             </div>
         </div>
     </div>
