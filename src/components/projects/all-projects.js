@@ -69,10 +69,12 @@ function AllProjects() {
     return (
         <div>
             <Header />
-            <picture>
-                <source media="(max-width: 520px)" srcSet="/star-estate-react/assets/images/banner-commercial-m.jpg" />
-                <img src="/star-estate-react/assets/images/banner-commercial.jpg" className="h-100 object-cover object-position-bottom" alt="Star Estate" />
-            </picture>
+            <div className="insideBanner">
+                <picture>
+                    <source media="(max-width: 520px)" srcSet="/star-estate-react/assets/images/banner-commercial-m.jpg" />
+                    <img src="/star-estate-react/assets/images/banner-commercial.jpg" className="h-100 object-cover object-position-bottom" alt="Star Estate" />
+                </picture>
+            </div>
             <div className="w-100">
                 <div className="container-lg">
                     <div className="breadcrumbContainer" aria-label="breadcrumb">

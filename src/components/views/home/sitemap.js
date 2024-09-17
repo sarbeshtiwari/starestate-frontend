@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "../../widgets/header";
 import axiosInstance from "../utils/axiosInstance"; // Ensure axiosInstance is correctly imported
+import Footer from "../../widgets/footer";
 
 export const fetchCities = async () => {
     try {
@@ -120,37 +121,37 @@ export default function SiteMap() {
                             <Link to="/" className="button w-100">Home</Link>
                         </div>
                         <div class="sitemapContainer">
-                <div className="row">
-                    <div className="col-lg-4 col-sm-6 sitemapBox">
-                        <ul className="list">
-                            <li><Link to="/Linkbout-us">About Us</Link></li>
-                            <li><Link to="/clients-speak">Client's Speak</Link></li>
-                            <li><Link to="/careers">Careers</Link></li>
-                            <li><Link to="/contact-us">Contact Us</Link></li>
-                        </ul>
-                    </div>
-                    <div className="col-lg-4 col-sm-6 sitemapBox">
-                        <ul className="list">
-                            <li><Link to="#">FAQs</Link></li>
-                            <li><Link to="/buyer-guide">Buyer Guide</Link></li>
-                            <li><Link to="#">Terms &amp; Conditions</Link></li>
-                            <li><Link to="/sitemap">Sitemap</Link></li>
-                        </ul>
-                    </div>
-                    <div className="col-lg-4 col-sm-6 sitemapBox">
-                        <ul className="list">
-                            <li><b>Media</b></li>
-                            <ul className="list">
-                                <li><Link to="/Linkwards">Awards</Link></li>
-                                <li><Link to="/news">News</Link></li>
-                                <li><Link to="/events">Events</Link></li>
-                                <li><Link to="/blogs">Blogs</Link></li>
-                                <li><Link to="/Linkdvertisements">Advertisements</Link></li>
-                            </ul>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+                            <div className="row">
+                                <div className="col-lg-4 col-sm-6 sitemapBox">
+                                    <ul className="list">
+                                        <li><Link to="/Linkbout-us">About Us</Link></li>
+                                        <li><Link to="/clients-speak">Client's Speak</Link></li>
+                                        <li><Link to="/careers">Careers</Link></li>
+                                        <li><Link to="/contact-us">Contact Us</Link></li>
+                                    </ul>
+                                </div>
+                                <div className="col-lg-4 col-sm-6 sitemapBox">
+                                    <ul className="list">
+                                        <li><Link to="#">FAQs</Link></li>
+                                        <li><Link to="/buyer-guide">Buyer Guide</Link></li>
+                                        <li><Link to="#">Terms &amp; Conditions</Link></li>
+                                        <li><Link to="/sitemap">Sitemap</Link></li>
+                                    </ul>
+                                </div>
+                                <div className="col-lg-4 col-sm-6 sitemapBox">
+                                    <ul className="list">
+                                        <li><b>Media</b></li>
+                                        <ul className="list">
+                                            <li><Link to="/Linkwards">Awards</Link></li>
+                                            <li><Link to="/news">News</Link></li>
+                                            <li><Link to="/events">Events</Link></li>
+                                            <li><Link to="/blogs">Blogs</Link></li>
+                                            <li><Link to="/Linkdvertisements">Advertisements</Link></li>
+                                        </ul>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
 
                         {/* Cities Section */}
                         <div className="sitemapContainer">
@@ -207,66 +208,67 @@ export default function SiteMap() {
                             </div>
                         </div>
                         <div className="sitemapContainer">
-    <div className="heading">
-        <h6 className="mb-0 text-primary">Studio Apartments</h6>
-    </div>
-    <div className="sitemapBox position-relative">
-        <ul className="list d-flex">
-            {cities.map((city) => (
-                <li key={city._id}>
-                    <a href="#">{city.location} <i className="fa fa-chevron-down"></i></a>
-                 
-                    <div className="sublinks">
-                        <ul className="list d-flex scroller">
-                            <li><a href="#">Studio Apartments in {city.location}</a></li>
-                          
-                        </ul>
-                    </div>
-                </li>
-            ))}
-        </ul>
-    </div>
-</div>
-<div className="container-fluid sitemapContainer">
-      {cities.map((city) => (
-        <div key={city._id} className="mb-4">
-          <div className="row">
-            <div className="col-12">
-              <div className="heading">
-                <h3>{city.location}</h3>
-              </div>
-            </div>
-          </div>
+                            <div className="heading">
+                                <h6 className="mb-0 text-primary">Studio Apartments</h6>
+                            </div>
+                            <div className="sitemapBox position-relative">
+                                <ul className="list d-flex">
+                                    {cities.map((city) => (
+                                        <li key={city._id}>
+                                            <a href="#">{city.location} <i className="fa fa-chevron-down"></i></a>
+                                        
+                                            <div className="sublinks">
+                                                <ul className="list d-flex scroller">
+                                                    <li><a href="#">Studio Apartments in {city.location}</a></li>
+                                                
+                                                </ul>
+                                            </div>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                        <div className="container-fluid sitemapContainer">
+                            {cities.map((city) => (
+                                <div key={city._id} className="mb-4">
+                                <div className="row">
+                                    <div className="col-12">
+                                    <div className="heading">
+                                        <h3>{city.location}</h3>
+                                    </div>
+                                    </div>
+                                </div>
 
-          {propertyTypes.map((property) => (
-            <div className="row sitemapBox" key={property.type}>
-              <div className="col-12">
-                <div className="heading">
-                  <h6 className="mb-0 text-primary">{property.type}</h6>
-                </div>
-              </div>
-              <div className="col-12">
-                <div className="readmore d-flex mt-0 flex-wrap w-100">
-                  {property.labels.map((label, index) => (
-                    <a
-                      href="#"
-                      key={index}
-                      className="button gray me-2 mb-2"
-                      onClick={() => handleLinkClick(property.type, label, city.location)}
-                    >
-                      {label} in {city.location}
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-      ))}
-    </div>
+                                {propertyTypes.map((property) => (
+                                    <div className="row sitemapBox" key={property.type}>
+                                    <div className="col-12">
+                                        <div className="heading">
+                                        <h6 className="mb-0 text-primary">{property.type}</h6>
+                                        </div>
+                                    </div>
+                                    <div className="col-12">
+                                        <div className="readmore d-flex mt-0 flex-wrap w-100">
+                                        {property.labels.map((label, index) => (
+                                            <a
+                                            href="#"
+                                            key={index}
+                                            className="button gray me-2 mb-2"
+                                            onClick={() => handleLinkClick(property.type, label, city.location)}
+                                            >
+                                            {label} in {city.location}
+                                            </a>
+                                        ))}
+                                        </div>
+                                    </div>
+                                    </div>
+                                ))}
+                                </div>
+                            ))}
+                        </div>
 
                     </div>
                 </div>
+                <Footer />
             </div>
         </>
     );

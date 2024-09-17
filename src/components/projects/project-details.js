@@ -27,6 +27,9 @@ export const sendProjectQuery = async (formData) => {
   };
 
 function ProjectDetails() {
+    const [menuOpen, setMenuOpen] = useState(false);
+    const toggleMenu = () => setMenuOpen(!menuOpen);
+    const closeMenu = () => setMenuOpen(false);
     const { slugURL } = useParams();
     const modalRef = useRef(null);
     // Functions to open and close the modal
@@ -151,20 +154,6 @@ function ProjectDetails() {
                     delay: 2000,
                     disableOnInteraction: false,
                 },
-            });
-            new Swiper('.full-project-slider', {
-                slidesPerView: 1,
-                spaceBetween: 0,
-                loop: true,
-                navigation: {
-                    nextEl: '.swiper-button-next',
-                    prevEl: '.swiper-button-prev',
-                },
-                breakpoints: {
-                    280: { slidesPerView: 1 },
-                    640: { slidesPerView: 2 },
-                    1024: { slidesPerView: 3 },
-                }
             });
         };
         initializeSwipers();
@@ -427,7 +416,11 @@ function ProjectDetails() {
             <header className="header">
                 <div className="main-header">
                     <div className="container-lg d-flex justify-content-between position-relative align-items-center">
-                        <div className="logo"><Link to='/'><img src="/star-estate-react/assets/images/logo-starestate.png" alt="Star Estate" /></Link></div>
+                        {mainData.map((data, index) => (
+                            <div key={index} className="logo">
+                                <Link to='/'><img src={`${axiosInstance.defaults.globalURL}${data.project_logo}`} alt='' /></Link>
+                            </div>
+                        ))}
                         <nav className="navi d-none d-lg-flex">
                             <div className="menu">
                                 <ul className="list-inline">
@@ -439,20 +432,16 @@ function ProjectDetails() {
                                 </ul>
                             </div>
                         </nav>
-                        <div className="menuBtn d-flex d-lg-none">
+                        <div className={`menuBtn d-flex d-lg-none ${menuOpen ? 'closeMenuBtn' : ''}`} onClick={toggleMenu}>
                             <span id="menuLine1"></span>
                             <span id="menuLine2"></span>
                             <span id="menuLine3"></span>
                         </div>
-                        {mainData.map((data, index) => (
-                            <div key={index} className="logo">
-                                <Link to='/'><img src={`${axiosInstance.defaults.globalURL}${data.project_logo}`} alt='' /></Link>
-                            </div>
-                        ))}
+                        <div className="logo"><Link to='/'><img src="/star-estate-react/assets/images/logo-starestate.png" alt="Star Estate" /></Link></div>
                     </div>
                 </div>
             </header>
-            <div className="menuContainer">
+            <div className={`menuContainer ${menuOpen ? 'open' : 'closed'}`} style={{ display: menuOpen ? 'block' : 'none' }}>
                 <div className="bigMenuList">
                     <ul className="list-inline">
                         <li><a href="#overview">Overview</a></li>
@@ -720,7 +709,7 @@ function ProjectDetails() {
             <div className="w-100 padding section-walkthrough">
                 <div className="container-lg">
                     <div className="row justify-content-center">
-                        <div className="col-lg-8 walkthroughBox">
+                        <div className="col-xxl-8 col-lg-10 walkthroughBox">
                             <div className="inner padding overlayBox">
                                 <div className="heading mx-auto mb-0 text-sm-center w-100 text-white position-relative">
                                     <div className="row justify-content-center">
@@ -1001,10 +990,10 @@ function ProjectDetails() {
                     <div className="touchFormWrapper">
                     <form onSubmit={handleSubmit}>
                             <div className="row ">
-                                <div className="col-md-4 col-sm-4 col form-group"><input type="text" className="form-control" placeholder="Name*" name="Name" value={formData.Name}
+                                <div className="col-md-4 form-group"><input type="text" className="form-control" placeholder="Name*" name="Name" value={formData.Name}
                             onChange={handleInputChange}
                             required /></div>
-                                <div className="col-md-4 col-sm-4 form-group">
+                                <div className="col-md-4 form-group">
                                     <PhoneInput
                                         country={'in'}
                                         name='phoneNumber'
@@ -1015,21 +1004,21 @@ function ProjectDetails() {
                                         onChange={handlePhoneChange}
                                     />
                                 </div>
-                                <div className="col-md-4 col-sm-4 form-group"><input type="email" className="form-control" placeholder="Your email address*" name="Email" value={formData.Email}
-                            onChange={handleInputChange}
-                            required/></div>
+                                <div className="col-md-4 form-group">
+                                    <input type="email" className="form-control" placeholder="Your email address*" name="Email" value={formData.Email}
+                                    onChange={handleInputChange}
+                                    required/>
+                                </div>
                                 <div className="col-12 form-group">
-                                    <div className="mt-3 custom-control custom-checkbox text-center">
-                                    <input
-                                    type="checkbox"
-                                    className="custom-control-input"
-                                    id="customCheck1"
-                                    checked={isChecked}
-                                    onChange={handleCheckboxChange}
-                                />
-                                <label className="custom-control-label" htmlFor="customCheck1">
-                                    I hereby agree for processing my personal data
-                                </label>
+                                    <div className="form-check mx-auto d-table">
+                                        <input
+                                            type="checkbox"
+                                            className="form-check-input"
+                                            id="agree_bottom"
+                                            checked={isChecked}
+                                            onChange={handleCheckboxChange}
+                                        />
+                                        <label className="form-check-label" htmlFor="agree_bottom">I hereby agree for processing my personal data</label>
                                     </div>
                                 </div>
                             </div>
@@ -1113,75 +1102,74 @@ function ProjectDetails() {
                     </div>
                 </div>
             </div>
-            <div className="w-100 padding section-similar-projects">
-                <div className="container-lg">
 
-
-                    {similarProjects.length > 0 && (
+                <div className="w-100 padding section-similar-projects">
+                    <div className="container-lg">
+            {similarProjects.length > 0 && (
                         <div className="heading mx-auto text-center">
                             <h2 className="mb-0">Similar Projects</h2>
                         </div>
                     )}
-                    <div className="swiper project-slider">
-                        <div className="swiper-wrapper">
-                            {similarProjects.map((project, index) => (
-                                <div className="swiper-slide project_box" key={index}>
-                                    <Link to={`/${project.slugURL}`} className="project_box_inner">
-                                        <div className="Project_box_img">
-                                            <div className="reraBox position-absolute">
-                                                <div className="qr_img">
-                                                    <img src={`${axiosInstance.defaults.globalURL}${project.rera_qr}`} alt="" />
-                                                </div>
-                                                <div className="rera_num">
-                                                    <small className="mb-0">
-                                                        <strong className="text-primary">Projects RERA No: </strong>
-                                                        {project.rera_no}
-                                                        <br />
-                                                        <small className="small text-primary">
-                                                            <i className="fa fa-link"></i> {project.reraWebsite}
+                        <div className="swiper project-slider">
+                            <div className="swiper-wrapper">
+                                {similarProjects.map((project, index) => (
+                                    <div className="swiper-slide project_box" key={index}>
+                                        <Link to={`/${project.slugURL}`} className="project_box_inner">
+                                            <div className="Project_box_img">
+                                                <div className="reraBox position-absolute">
+                                                    <div className="qr_img">
+                                                        <img src={`${axiosInstance.defaults.globalURL}${project.rera_qr}`} alt="" />
+                                                    </div>
+                                                    <div className="rera_num">
+                                                        <small className="mb-0">
+                                                            <strong className="text-primary">Projects RERA No: </strong>
+                                                            {project.rera_no}
+                                                            <br />
+                                                            <small className="small text-primary">
+                                                                <i className="fa fa-link"></i> {project.reraWebsite}
+                                                            </small>
                                                         </small>
-                                                    </small>
+                                                    </div>
+                                                </div>
+                                                <div className="img-fluid">
+                                                    <img src={`${axiosInstance.defaults.globalURL}${project.project_thumbnail}`} alt={project.projectName} />
                                                 </div>
                                             </div>
-                                            <div className="img-fluid">
-                                                <img src={`${axiosInstance.defaults.globalURL}${project.project_thumbnail}`} alt={project.projectName} />
+                                            <div className="project_box_details">
+                                                <div className="project_developer_detail">
+                                                    <h4 className="mb-0 project_name">{project.projectName}</h4>
+                                                    <h6 className="mb-0 project_price">
+                                                        <i className="fa fa-indian-rupee-sign"></i>
+                                                        {project.projectPrice} onwards
+                                                    </h6>
+                                                </div>
+                                                <div className="project_status_detail">
+                                                    <span className="project_box_location">
+                                                        <i className="fa fa-map-marker-alt"></i>
+                                                        {project.projectAddress}
+                                                    </span>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div className="project_box_details">
-                                            <div className="project_developer_detail">
-                                                <h4 className="mb-0 project_name">{project.projectName}</h4>
-                                                <h6 className="mb-0 project_price">
-                                                    <i className="fa fa-indian-rupee-sign"></i>
-                                                    {project.projectPrice} onwards
-                                                </h6>
-                                            </div>
-                                            <div className="project_status_detail">
-                                                <span className="project_box_location">
-                                                    <i className="fa fa-map-marker-alt"></i>
-                                                    {project.projectAddress}
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </Link>
-                                </div>
-                            ))}
-                        </div>
-                        <div className="swiper-controls h-auto mr-auto">
-                            <div
-                                className="swiper-button-prev"
-                                role="button"
-                                aria-label="Previous slide"
-                            ></div>
-                            <div
-                                className="swiper-button-next"
-                                role="button"
-                                aria-label="Next slide"
-                            ></div>
+                                        </Link>
+                                    </div>
+                                ))}
+                            </div>
+                            <div className="swiper-controls h-auto mr-auto">
+                                <div
+                                    className="swiper-button-prev"
+                                    role="button"
+                                    aria-label="Previous slide"
+                                ></div>
+                                <div
+                                    className="swiper-button-next"
+                                    role="button"
+                                    aria-label="Next slide"
+                                ></div>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-            </div>
             <div className='pt-2 account-details bg-gray-gradient-box'>
                 <div className='container-lg'>
                     <div className='row '>
@@ -1208,53 +1196,56 @@ function ProjectDetails() {
                             <span aria-hidden="true">&times;</span>
                         </button>
                         <div class="modal-header">
-                            <h6 class="modal-title text-secondary">Please fill the given form.</h6>
+                            <h6 class="modal-title text-primary">Please fill the given form.</h6>
                         </div>
                         <div class="modal-body">
-                            <div class="formContainer text-white">
-                                <div class="form">
-                                    <form class="form-container" id="contact_form" method="post" onsubmit="return Enquiry();">
-                                        <p class="status mb-0 text-warning"></p>
-                                        <div class="form-row">
-                                            <div class="col-md-12 form-group">
-                                                <label for="name">Name<sup class="text-danger" >*</sup></label>
-                                                <input type="text" class="form-control form-control-white text-black" id="name" name="name" />
-                                            </div>
-                                            <div class="col-md-12 form-group">
-                                                <label for="email">Email<sup class="text-danger">*</sup></label>
-                                                <input type="email" class="form-control form-control-white text-black" name="email" id="email" />
-                                            </div>
-                                            <div class="col-md-12 form-group">
-                                                <label for="mobile">Mobile<sup class="text-danger">*</sup></label>
-                                                <input type="tel" class="form-control form-control-white text-black" name="mobile" id="mobile" />
-                                            </div>
-                                            <div class="col-md-12 text-align-center w-auto formFooter readmore mt-0">
-                                                <input type="hidden" name="contact_action" value="active" />
-                                                <input type="hidden" id="pagename" name="pagename" value="" />
-                                                <input type="hidden" name="utm_source" value="" />
-                                                <input type="hidden" name="utm_medium" value="" />
-                                                <input type="hidden" name="utm_campaign" value="" />
-                                                <button type="submit" class="button light mx-auto">Submit</button>
-                                            </div>
-                                            <div class="col-md-12 modal-call text-center mt-4 d-flex align-items-center justify-content-center" style={{ gap: "24px" }}>
-                                                <h6 class="mb-0">Request a Call Back</h6>
-                                                {mainData.map((data, index) => (
-                                                    <div key={index} class="readmore ml-3 mt-0"><a href="#" class="button light"><i class="fa fa-phone"></i><span id="ivrmodal">{data.ivr_no}</span></a></div>
-                                                ))}
-                                            </div>
+                            <div class="form">
+                                <form class="form-container" id="contact_form" method="post" onsubmit="return Enquiry();">
+                                    <p class="status mb-0 text-warning"></p>
+                                    <div class="form-row">
+                                        <div class="col-md-12 form-group">
+                                            <label for="name">Name<sup class="text-danger" >*</sup></label>
+                                            <input type="text" class="form-control bg-white" id="name" name="name" />
                                         </div>
-                                    </form>
-                                </div>
+                                        <div class="col-md-12 form-group">
+                                            <label for="email">Email<sup class="text-danger">*</sup></label>
+                                            <input type="email" class="form-control bg-white" name="email" id="email" />
+                                        </div>
+                                        <div class="col-md-12 form-group">
+                                            <label for="mobile">Mobile<sup class="text-danger">*</sup></label>
+                                            <input type="tel" class="form-control bg-white" name="mobile" id="mobile" />
+                                        </div>
+                                        <div class="col-md-12 text-align-center w-auto formFooter readmore mt-0">
+                                            <input type="hidden" name="contact_action" value="active" />
+                                            <input type="hidden" id="pagename" name="pagename" value="" />
+                                            <input type="hidden" name="utm_source" value="" />
+                                            <input type="hidden" name="utm_medium" value="" />
+                                            <input type="hidden" name="utm_campaign" value="" />
+                                            <button type="submit" class="button">Submit</button>
+                                        </div>
+                                        <div class="col-md-12 modal-call text-center mt-4 d-flex align-items-center justify-content-center" style={{ gap: "24px" }}>
+                                            <h6 class="mb-0">Request a Call Back</h6>
+                                            {mainData.map((data, index) => (
+                                                <div key={index} class="readmore ml-3 mt-0"><a href="#" class="button"><i class="fa fa-phone"></i><span id="ivrmodal">{data.ivr_no}</span></a></div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div className="footer-enquiryBtn d-flex d-sm-none">
-                <a className="monCall" id="mobPhone" href="tel:+91"><strong><i className="fa fa-phone"></i> Call</strong></a>
-                <a id="mobEnquiry" href="#formModal" data-toggle="modal"><strong><i className="fa fa-envelope"></i>
-                    Enquire</strong></a>
-                <a className="whatsCall" href="https://api.whatsapp.com/send?phone=+91&amp;text=Hi I am interested in Lodha Bellevue, Please share the details." target="_blank"><strong><i className="fab fa-whatsapp"></i> WhatsApp</strong></a>
+                {mainData.map((data, index) => ( 
+                    <>
+                        <a className="monCall" id="mobPhone" href={`tel:${data.ivr_no}`}><strong><i className="fa fa-phone"></i> Call</strong></a>
+                        <a id="mobEnquiry" href="#formModal" data-bs-toggle="modal"><strong><i className="fa fa-envelope"></i>
+                            Enquire</strong></a>
+                        <a className="whatsCall" href={`https://api.whatsapp.com/send?phone=${data.ivr_no}&amp;text=Hi, I am interested in ${data.projectName}, Please share the details.`} target="_blank"><strong><i className="fab fa-whatsapp"></i> WhatsApp</strong></a>
+                        {/* <a className="whatsCall" href="https://api.whatsapp.com/send?phone=+91&amp;text=Hi I am interested in Lodha Bellevue, Please share the details." target="_blank"><strong><i className="fab fa-whatsapp"></i> WhatsApp</strong></a> */}
+                    </>
+                ))}
             </div>
             <div className="footer-bottom">
                 <div className="container-lg justify-content-center">

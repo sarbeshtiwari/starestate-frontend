@@ -163,28 +163,28 @@ const Banner = () => {
        <Carousel indicators={false} controls={false} activeIndex={index} className='h-100'>
         <Carousel.Item>
           <picture>
-            <source media="(max-width: 540px)" srcSet="images/homebanner/new/banner-apartments-m.jpg" />
+            <source media="(max-width: 540px)" srcSet="/star-estate-react/assets/images/homebanner/new/banner-apartments-m.jpg" />
             <img src="/star-estate-react/assets/images/homebanner/new/banner-apartments.jpg" alt="Star Estate" className="d-block w-100 carousel-img" />
           </picture>
           <span className="typing-text-in-carousel">Apartment</span>
         </Carousel.Item>
         <Carousel.Item>
           <picture>
-            <source media="(max-width: 540px)" srcSet="images/homebanner/new/banner-villa-m.jpg" />
+            <source media="(max-width: 540px)" srcSet="/star-estate-react/assets/images/homebanner/new/banner-villa-m.jpg" />
             <img src="/star-estate-react/assets/images/homebanner/new/banner-villa.jpg" alt="Star Estate" className="d-block w-100 carousel-img" />
           </picture>
           <span className="typing-text-in-carousel">Villa</span>
         </Carousel.Item>
         <Carousel.Item>
           <picture>
-            <source media="(max-width: 540px)" srcSet="images/homebanner/new/banner-mall-m.jpg" />
+            <source media="(max-width: 540px)" srcSet="/star-estate-react/assets/images/homebanner/new/banner-mall-m.jpg" />
             <img src="/star-estate-react/assets/images/homebanner/new/banner-mall.jpg" alt="Star Estate" className="d-block w-100 carousel-img" />
           </picture>
           <span className="typing-text-in-carousel">Mall</span>
         </Carousel.Item>
         <Carousel.Item>
           <picture>
-            <source media="(max-width: 540px)" srcSet="images/homebanner/new/banner-office-m.jpg" />
+            <source media="(max-width: 540px)" srcSet="/star-estate-react/assets/images/homebanner/new/banner-office-m.jpg" />
             <img src="/star-estate-react/assets/images/homebanner/new/banner-office.jpg" alt="Star Estate" className="d-block w-100 carousel-img" />
           </picture>
           <span className="typing-text-in-carousel">Office Space</span>
@@ -199,7 +199,7 @@ const Banner = () => {
               </span>
               <div className="filter-form">
                 <form id="categoryfilter" encType="multipart/form-data" onSubmit={handleSubmit}>
-                  <div className="row gx-2">
+                  <div className="row gx-2 gap-form-row">
                     <div className="col-md-10">
                       <div className="inner">
                         <div className="row g-0">
@@ -255,11 +255,13 @@ const Banner = () => {
                         </div>
                       </div>
                     </div>
-                    <div className="col-md-2 readmore w-auto mt-0">
-                      <input type="hidden" name="projectfltr" value="active" />
-                      <button className="button w-100 h-100" type="submit">
-                        Search
-                      </button>
+                    <div className="col-md-2">
+                      <div className='readmore w-auto mt-0 h-100'>
+                        <input type="hidden" name="projectfltr" value="active" />
+                        <button className="button w-100 h-100" type="submit">
+                          Search
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </form>
