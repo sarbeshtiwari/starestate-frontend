@@ -158,7 +158,7 @@ const Banner = () => {
     }, []);
   return (
     <div>
-      <Header />
+      {/* <Header /> */}
     <div id="banner" className="carousel slide carousel-fade banner" data-bs-pause="false" data-bs-ride="carousel">
        <Carousel indicators={false} controls={false} activeIndex={index} className='h-100'>
         <Carousel.Item>

@@ -40,7 +40,7 @@ function NewsDetails() {
     }, [slugURL]);
     return (
         <div>
-            <Header />
+            {/* <Header /> */}
             <div className="emptyBox"></div>
             <div className="w-100">
                 <div className="container-lg">
@@ -108,7 +108,7 @@ function NewsDetails() {
                     </div>
                 </div>
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </div>
     )
 }

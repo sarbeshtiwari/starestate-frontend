@@ -40,7 +40,7 @@ function BlogDetails() {
     }, [slugURL]);
     return (
         <div>
-            <Header />
+            {/* <Header /> */}
             <div className="emptyBox"></div>
             <div className="w-100">
                 <div className="container-lg">
@@ -108,7 +108,7 @@ function BlogDetails() {
                     </div>
                 </div>
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </div>
     )
 }

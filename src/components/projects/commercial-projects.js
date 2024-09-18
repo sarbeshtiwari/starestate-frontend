@@ -284,7 +284,7 @@ function CommercialProjects() {
 
     return (
         <div>
-            <Header />
+            {/* <Header /> */}
             <div className="insideBanner">
                 <div className="bannerContainer">
                     <div className="container-lg">
@@ -571,7 +571,7 @@ function CommercialProjects() {
                     </div>
                 </div>
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </div>
     )
 }

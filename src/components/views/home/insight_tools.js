@@ -14,25 +14,25 @@ const InsightsTools = () => {
                 <div className="row g-3">
                     <div className="col-lg-3 col-sm-6 project-card">
                         <div className="inner px-0 pt-0">
-                            <img src="/star-estate-react/assets/images/icons/img-emi.webp" alt="" />
+                            <img src="/star-estate-react/assets/images/emi.jpg" alt="" />
                             <div className="card-footer viewmore"><Link to='/emi-calculator'>Explore Now</Link></div>
                         </div>
                     </div>
                     <div className="col-lg-3 col-sm-6 project-card">
                         <div className="inner px-0 pt-0">
-                            <img src="/star-estate-react/assets/images/icons/img-evaluation-report.webp" alt="" />
+                            <img src="/star-estate-react/assets/images/evaluation-report.jpg" alt="" />
                             <div className="card-footer viewmore"><Link to='/property-evaluation-report'>Explore Now</Link></div>
                         </div>
                     </div>
                     <div className="col-lg-3 col-sm-6 project-card">
                         <div className="inner px-0 pt-0">
-                            <img src="/star-estate-react/assets/images/icons/img-nri.webp" alt="" />
+                            <img src="/star-estate-react/assets/images/nri.jpg" alt="" />
                             <div className="card-footer viewmore"><Link to='/nri-guidelines'>Explore Now</Link></div>
                         </div>
                     </div>
                     <div className="col-lg-3 col-sm-6 project-card">
                         <div className="inner px-0 pt-0">
-                            <img src="/star-estate-react/assets/images/icons/img-realty-check.webp" alt="" />
+                            <img src="/star-estate-react/assets/images/realty-check.jpg" alt="" />
                             <div className="card-footer viewmore"><Link to='/reality-check-before-buying'>Explore Now</Link></div>
                         </div>
                     </div>

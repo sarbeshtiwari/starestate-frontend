@@ -14,7 +14,7 @@ function BuyerGuide() {
 
     return (
         <div>
-            <Header />
+            {/* <Header /> */}
             <div className="insideBanner">
                 <picture>
                     <source media="(max-width: 820px)" srcset="/star-estate-react/assets/images/banner-emi-calculator-m.jpg" />
@@ -309,7 +309,7 @@ function BuyerGuide() {
                     </div>
                 </div>
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </div>
     )
 }

@@ -19,7 +19,7 @@ function Career() {
     }, []);
   return (
     <div>
-        <Header />
+        {/* <Header /> */}
         <div className="insideBanner">
         <picture>
             <img src="images/banner-emi-calculator1.jpg" className="h-100 object-cover object-position-bottom rounded" alt="Star Estate" />
@@ -126,7 +126,7 @@ function Career() {
             </div>
         </div>
     </div>
-    <Footer />
+    {/* <Footer /> */}
     </div>
   )
 }

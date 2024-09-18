@@ -20,7 +20,7 @@ function ClientsSpeak() {
     }, []);
   return (
     <div>
-        <Header />
+        {/* <Header /> */}
         <div class="insideBanner">
         <picture>
             <source media="(max-width: 820px)" srcset="/star-estate-react/assets/images/banner-emi-calculator-m.jpg" />
@@ -61,7 +61,7 @@ function ClientsSpeak() {
             </div>
         </div>
     </div>
-        <Footer />
+        {/* <Footer /> */}
     </div>
   )
 }

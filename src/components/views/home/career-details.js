@@ -108,7 +108,7 @@ function CareerDetails() {
 
     return (
         <div>
-            <Header />
+            {/* <Header /> */}
             <div className="insideBanner">
                 <picture>
                     <source media="(max-width: 820px)" srcSet="/star-estate-react/assets/images/banner-emi-calculator-m.jpg" />
@@ -227,7 +227,7 @@ function CareerDetails() {
                     </div>
                 </div>
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </div>
     );
 }

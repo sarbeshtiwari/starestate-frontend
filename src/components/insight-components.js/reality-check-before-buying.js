@@ -6,7 +6,7 @@ import Footer from '../widgets/footer'
 function RealityCheck() {
   return (
     <div>
-        <Header />
+        {/* <Header /> */}
         <div className="insideBanner">
                 <picture>
                     <source 
@@ -84,7 +84,7 @@ function RealityCheck() {
             </div>
         </div>
     </div>
-<Footer />
+{/* <Footer /> */}
     </div>
   )
 }

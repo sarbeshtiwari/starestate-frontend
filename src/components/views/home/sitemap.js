@@ -100,7 +100,7 @@ export default function SiteMap() {
     return (
         <>
             <div>
-                <Header />
+                {/* <Header /> */}
                 <div className="emptyBox"></div>
                 <div className="w-100">
                     <div className="container-lg">
@@ -268,7 +268,7 @@ export default function SiteMap() {
 
                     </div>
                 </div>
-                <Footer />
+                {/* <Footer /> */}
             </div>
         </>
     );

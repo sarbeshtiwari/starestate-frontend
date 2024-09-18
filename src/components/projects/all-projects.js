@@ -68,7 +68,7 @@ function AllProjects() {
 
     return (
         <div>
-            <Header />
+            {/* <Header /> */}
             <div className="insideBanner">
                 <picture>
                     <source media="(max-width: 520px)" srcSet="/star-estate-react/assets/images/banner-commercial-m.jpg" />
@@ -139,7 +139,7 @@ function AllProjects() {
                     </div>
                 </div>
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </div>
     );
 }

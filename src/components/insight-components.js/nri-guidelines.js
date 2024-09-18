@@ -68,7 +68,7 @@ function NriGuidelines() {
     };
     return (
         <div>
-            <Header />
+            {/* <Header /> */}
             <div className="insideBanner">
                 <picture>
                     <source 
@@ -404,7 +404,7 @@ function NriGuidelines() {
                     </div>
                 </div>
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </div>
     )
 }

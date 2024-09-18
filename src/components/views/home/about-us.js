@@ -47,7 +47,7 @@ function AboutUs() {
     }, []);
     return (
         <div>
-            <Header />
+            {/* <Header /> */}
             <div className="insideBanner">
                 <picture>
                     <source 
@@ -229,7 +229,7 @@ function AboutUs() {
                     </div>
                 </div>
             </div>
-            <Footer />
+            {/* <Footer /> */}
         </div>
     )
 }

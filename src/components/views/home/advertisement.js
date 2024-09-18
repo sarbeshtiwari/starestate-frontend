@@ -126,7 +126,7 @@ function Advertisement() {
 
     return (
         <div>
-            <Header />
+            {/* <Header /> */}
             <div className="insideBanner">
                 <picture>
                     <source media="(max-width: 820px)" srcSet="/star-estate-react/assets/images/banner-emi-calculator-m.jpg" />
@@ -189,7 +189,7 @@ function Advertisement() {
                 </div>
             </div>
 
-            <Footer />
+            {/* <Footer /> */}
 
             {/* Modal for radio ads */}
             <div className="modal fade" id="radioModal" tabIndex="-1" aria-labelledby="radioModalLabel" aria-hidden="true">

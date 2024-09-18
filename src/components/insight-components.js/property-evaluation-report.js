@@ -77,7 +77,7 @@ function PropertyEvaluationReport() {
 
     return (
         <div>
-            <Header />
+            {/* <Header /> */}
             <div className="insideBanner">
                 <picture>
                     <source 
@@ -468,7 +468,7 @@ function PropertyEvaluationReport() {
                     </div>
                 </div>
             </div> */}
-            <Footer />
+            {/* <Footer /> */}
         </div>
     )
 }

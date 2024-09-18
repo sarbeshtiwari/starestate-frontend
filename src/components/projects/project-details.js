@@ -1032,7 +1032,7 @@ function ProjectDetails() {
                 {Faqs.length > 0 && ( //used when no data available it should it the whole container
                     <div className="container-lg">
                         <div className="heading mx-auto text-center">
-                            <h2 className="mb-0">Faqs</h2>
+                            <h2 className="mb-0">FAQs</h2>
                         </div>
                     <div className="touchFormWrapper">
                         <div className="accordion" id="myAccordion">
@@ -1197,23 +1197,30 @@ function ProjectDetails() {
                         </button>
                         <div class="modal-header">
                             <h6 class="modal-title text-primary">Please fill the given form.</h6>
+                            {successMessage && <div className="alert alert-success mt-3">{successMessage}</div>}
                         </div>
                         <div class="modal-body">
                             <div class="form">
-                                <form class="form-container" id="contact_form" method="post" onsubmit="return Enquiry();">
+                                <form class="form-container" id="contact_form" method="post" onSubmit={handleSubmit}>
                                     <p class="status mb-0 text-warning"></p>
                                     <div class="form-row">
                                         <div class="col-md-12 form-group">
                                             <label for="name">Name<sup class="text-danger" >*</sup></label>
-                                            <input type="text" class="form-control bg-white" id="name" name="name" />
+                                            <input type="text" class="form-control bg-white" id="Name" name="Name" value={formData.Name}
+                            onChange={handleInputChange}
+                            required />
                                         </div>
                                         <div class="col-md-12 form-group">
                                             <label for="email">Email<sup class="text-danger">*</sup></label>
-                                            <input type="email" class="form-control bg-white" name="email" id="email" />
+                                            <input type="email" class="form-control bg-white" name="Email" id="Email" value={formData.Email}
+                            onChange={handleInputChange}
+                            required/>
                                         </div>
                                         <div class="col-md-12 form-group">
                                             <label for="mobile">Mobile<sup class="text-danger">*</sup></label>
-                                            <input type="tel" class="form-control bg-white" name="mobile" id="mobile" />
+                                            <input type="tel" class="form-control bg-white" name="phoneNumber" id="phoneNumber" value={formData.phoneNumber}
+                            onChange={handleInputChange}
+                            required/>
                                         </div>
                                         <div class="col-md-12 text-align-center w-auto formFooter readmore mt-0">
                                             <input type="hidden" name="contact_action" value="active" />
@@ -1221,6 +1228,7 @@ function ProjectDetails() {
                                             <input type="hidden" name="utm_source" value="" />
                                             <input type="hidden" name="utm_medium" value="" />
                                             <input type="hidden" name="utm_campaign" value="" />
+                                            
                                             <button type="submit" class="button">Submit</button>
                                         </div>
                                         <div class="col-md-12 modal-call text-center mt-4 d-flex align-items-center justify-content-center" style={{ gap: "24px" }}>

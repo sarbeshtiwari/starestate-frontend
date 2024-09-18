@@ -56,7 +56,7 @@ function EmiCalculator() {
     };
   return (
     <div>
-       <Header />
+       {/* <Header /> */}
     <div className="insideBanner">
 
             <picture>
@@ -144,7 +144,7 @@ function EmiCalculator() {
             </div>
         </div>
     </div>
-    <Footer />
+    {/* <Footer /> */}
 </div>
   )
 }
